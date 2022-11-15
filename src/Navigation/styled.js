@@ -21,7 +21,6 @@ export const NavigationWrapper = styled.div`
 
 export const NavigationLogoWrapper = styled.div`
     display: inherit;
-    align: center;
     margin-right: 75px;
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
