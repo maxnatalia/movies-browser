@@ -33,7 +33,7 @@ export const ErrorMessage = styled.p`
     @media (max-width: 767px) {
       max-width: 220px;
       font-weight: 400;
-      font-size: 12px;
+      font-size: 11px;
       line-height: 14px;
       margin-top: 12px;
     }
