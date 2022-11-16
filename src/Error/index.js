@@ -1,4 +1,5 @@
-import { ErrorContainer, ErrorMessage, Wrapper, Button } from "./styled";
+import { ErrorContainer, Wrapper, Button } from "./styled";
+import ErrorMessage from "../common/ErrorMessage";
 import { ReactComponent as ErrorIcon } from "./Error.svg";
 
 const Error = () => {
@@ -10,7 +11,7 @@ const Error = () => {
       <ErrorMessage>Ooops! Something went wrong...</ErrorMessage>
       <ErrorMessage advice>Please check your network connection and try again</ErrorMessage>
       <Wrapper>
-        <Button>Back to homepage</Button>
+        <Button>Back to home page</Button>
       </Wrapper>
     </ErrorContainer>
   );
