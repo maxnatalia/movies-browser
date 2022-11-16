@@ -10,7 +10,11 @@ export const SearchWrapper = styled.div`
     max-width: 432px;
     width: 100%;
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
+        max-width: 300px;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         font-size: 13px;
         line-height: 16px;
         margin: auto;
@@ -31,7 +35,11 @@ export const SearchInput = styled.input`
         color: ${({ theme }) => theme.color.darkerGrey};
     }
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
+        font-size: 15px
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         font-size: 13px;
     };
 `;
@@ -39,7 +47,11 @@ export const SearchInput = styled.input`
 export const SearchIcon = styled(Search)`
     margin: 12px;
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
+        width: 36px;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         width: 16px;
     };
 `;

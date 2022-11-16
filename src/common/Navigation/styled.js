@@ -11,20 +11,35 @@ export const NavigationWrapper = styled.div`
     align-items: center;
     flex-wrap: wrap;
     max-width: 1330px;
+    padding: 0 16px;
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
-        padding: 0 16px 16px;
-        max-width: ${({ theme }) => theme.breakpoint.mobile}px;
+    @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
+        max-width: ${({ theme }) => theme.breakpoint.smallScreen}px;
         justify-content: space-between;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+        max-width: ${({ theme }) => theme.breakpoint.mobileMax}px;
+        justify-content: space-between;
+        padding-bottom: 16px;
     };
 `;
 
 export const NavigationLogoWrapper = styled.div`
     display: inherit;
+    align-items: center;
     margin-right: 75px;
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
-        margin-right: 19px;
+    @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
+        margin-right: 24px;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+        margin-right: 17px;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
+        margin-right: 10px;
     };
 `;
 
@@ -33,21 +48,29 @@ export const Nav = styled.nav`
     align-items: center;
     flex-grow: 1;
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         flex-grow: 0;
     };
 `;
 
 export const NavigationTitle = styled.h1`
     margin: 0;
-    font-size: 24px;
     font-weight: 500;
     line-height: 40px;
     text-transform: capitalize;
     letter-spacing: -1.5px;
     color: ${({ theme }) => theme.color.white};
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
+        font-size: 24px;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
+        font-size: 20px;
+        line-height: 1.3;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         font-size: 13px;
         line-height: 1.3;
     };
@@ -65,23 +88,36 @@ export const NavigationLink = styled.span`
     font-size: 14px;
     line-height: 21px;
     cursor: pointer;
+    transition: all .3s ease;
     
     &:hover {
         border: 1px solid ${({ theme }) => theme.color.white};
     }
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
-        max-height: 34px;
+    @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
+        border-radius: 30px;
+        font-size: 13px;
+        line-height: 19px;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         border-radius: 29px;
         font-size: 12px;
         line-height: 18px;
+    };
+
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+        border-radius: 29px;
+        font-size: 10px;
+        line-height: 16px;
+        margin: 10px 0;
     };
 `;
 
 export const VideoIcon = styled(Video)`
     margin: 0 12px 0 0;
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         width: 17px;
         height: 17px;
     };
