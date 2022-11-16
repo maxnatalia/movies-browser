@@ -1,12 +1,12 @@
-import ErrorMessage from "../common/ErrorMessage";
+import Message from "../common/Message";
 import Wrapper from "../common/Wrapper";
 import { ReactComponent as NoResultsPicture } from "./no_results.svg";
 
 const NoResults = () => {
   return (
     <>
-      <ErrorMessage search>Sorry, there are no results for “Muan”</ErrorMessage>
-      <Wrapper>
+      <Message search>Sorry, there are no results for “Muan”</Message>
+      <Wrapper noResult>
         <NoResultsPicture />
       </Wrapper>
     </>

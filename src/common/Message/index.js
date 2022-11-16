@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 
-const ErrorMessage = styled.p`
+const Message = styled.p`
   font-weight: 600;
   font-size: 36px;
   line-height: 43px;
   margin: 24px 0 0 0;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
@@ -21,7 +21,7 @@ const ErrorMessage = styled.p`
     font-size: 22px;
     line-height: 29px;
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
       max-width: 220px;
       font-weight: 400;
       font-size: 11px;
@@ -33,10 +33,10 @@ const ErrorMessage = styled.p`
   ${({ search }) => search && css`
     margin-top: 56px;
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
       margin-top: 24px;
     }
   `}
 `;
 
-export default ErrorMessage;
+export default Message;

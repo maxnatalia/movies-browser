@@ -1,18 +1,18 @@
-import { ErrorContainer, Wrapper, Button } from "./styled";
-import ErrorMessage from "../common/ErrorMessage";
+import { ErrorContainer, ErrorWrapper, Button } from "./styled";
+import Message from "../common/Message";
 import { ReactComponent as ErrorIcon } from "./Error.svg";
 
 const Error = () => {
   return (
     <ErrorContainer>
-      <Wrapper icon> 
+      <ErrorWrapper icon> 
         <ErrorIcon />
-      </Wrapper>
-      <ErrorMessage>Ooops! Something went wrong...</ErrorMessage>
-      <ErrorMessage advice>Please check your network connection and try again</ErrorMessage>
-      <Wrapper>
+      </ErrorWrapper>
+      <Message>Ooops! Something went wrong...</Message>
+      <Message advice>Please check your network connection and try again</Message>
+      <ErrorWrapper>
         <Button>Back to home page</Button>
-      </Wrapper>
+      </ErrorWrapper>
     </ErrorContainer>
   );
 };

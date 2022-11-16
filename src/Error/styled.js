@@ -4,7 +4,7 @@ export const ErrorContainer = styled.div`
   text-align: center;
   margin: 195px auto 0 auto;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     margin-top: 140px;
   }
 `;
@@ -15,7 +15,7 @@ export const ErrorMessage = styled.p`
   line-height: 43px;
   margin: 24px 0 0 0;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
@@ -30,7 +30,7 @@ export const ErrorMessage = styled.p`
     font-size: 22px;
     line-height: 29px;
 
-    @media (max-width: 767px) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
       max-width: 220px;
       font-weight: 400;
       font-size: 11px;
@@ -40,15 +40,13 @@ export const ErrorMessage = styled.p`
   `}
 `;
 
-export const Wrapper = styled.div`
+export const ErrorWrapper = styled.div`
   ${({ icon }) => icon && css`
     display: inline-block;
     width: 120px;
-    height: 120px;
 
-    @media (max-width: 767px) {
-      width: 70px;
-      height: 70px;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+      width: 54px;
     }
   `}
 `;
@@ -71,10 +69,10 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.color.blueRibbon};
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     margin-top: 16px;
     font-weight: 500;
-    font-size: 12px;
-    height: 40px;
+    font-size: 10px;
+    height: 30px;
   }
 `;

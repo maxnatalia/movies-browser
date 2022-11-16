@@ -1,11 +1,11 @@
-import ErrorMessage from "../common/ErrorMessage";
+import Message from "../common/Message";
 import Wrapper from "../common/Wrapper";
 import { ReactComponent as LoadingIcon } from "./loading.svg";
 
 const Loading = () => {
   return (
     <>
-      <ErrorMessage search>Search results for “Mulan”</ErrorMessage>
+      <Message search>Search results for “Mulan”</Message>
       <Wrapper loading>
         <LoadingIcon />
       </Wrapper>
