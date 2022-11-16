@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Video } from "./Video.svg";
+import { ReactComponent as Video } from "../images/Logo.svg";
 
 export const NavigationHeader = styled.header`
     background: ${({ theme }) => theme.color.lightBlack};

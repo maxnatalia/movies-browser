@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Search } from "./Search.svg";
+import { ReactComponent as Search } from "../../images/Search.svg";
 
 export const SearchWrapper = styled.div`
     background-color: ${({ theme }) => theme.color.white};
