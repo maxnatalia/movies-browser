@@ -14,13 +14,10 @@ export const NavigationWrapper = styled.div`
     padding: 0 16px;
 
     @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
-        max-width: ${({ theme }) => theme.breakpoint.smallScreen}px;
         justify-content: space-between;
     };
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        max-width: ${({ theme }) => theme.breakpoint.mobileMax}px;
-        justify-content: space-between;
         padding-bottom: 16px;
     };
 `;
@@ -58,7 +55,7 @@ export const NavigationTitle = styled.h1`
     font-weight: 500;
     line-height: 40px;
     text-transform: capitalize;
-    letter-spacing: -1.5px;
+    letter-spacing: -0.5px;
     color: ${({ theme }) => theme.color.white};
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
@@ -106,7 +103,8 @@ export const NavigationLink = styled.span`
         line-height: 18px;
     };
 
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
+        padding: 8px 20px;
         border-radius: 29px;
         font-size: 10px;
         line-height: 16px;
