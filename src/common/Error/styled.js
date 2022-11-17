@@ -53,6 +53,7 @@ export const ErrorWrapper = styled.div`
 
 export const Button = styled.button`
   background-color: ${({ theme }) => theme.color.blue};
+  font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   color: ${({ theme }) => theme.color.white};
   height: 51px;
