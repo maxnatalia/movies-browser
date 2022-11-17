@@ -1,6 +1,6 @@
 import { ErrorContainer, ErrorWrapper, Button } from "./styled";
-import Message from "../common/Message";
-import { ReactComponent as ErrorIcon } from "../common/images/Error.svg";
+import Message from "../Message";
+import { ReactComponent as ErrorIcon } from "../images/Error.svg";
 
 const Error = () => {
   return (

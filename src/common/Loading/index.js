@@ -1,6 +1,6 @@
-import Message from "../common/Message";
-import Wrapper from "../common/Wrapper";
-import { ReactComponent as LoadingIcon } from "../common/images/loading.svg";
+import Message from "../Message";
+import Wrapper from "../Wrapper";
+import { ReactComponent as LoadingIcon } from "../images/loading.svg";
 
 const Loading = () => {
   return (

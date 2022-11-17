@@ -1,6 +1,6 @@
-import Message from "../common/Message";
-import Wrapper from "../common/Wrapper";
-import { ReactComponent as NoResultsPicture } from "../common/images/no_results.svg";
+import Message from "../Message";
+import Wrapper from "../Wrapper";
+import { ReactComponent as NoResultsPicture } from "../images/no_results.svg";
 
 const NoResults = () => {
   return (
