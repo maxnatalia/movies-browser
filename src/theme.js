@@ -18,6 +18,7 @@ export const theme = {
         mediumScreen: 1280,
         smallScreen: 991,
         mobileMax: 767,
+        oldIphone: 480,
         mobileMin: 320,
     }
 };
