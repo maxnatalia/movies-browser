@@ -87,10 +87,11 @@ export const NavigationLink = styled(NavLink)`
     line-height: 21px;
     cursor: pointer;
     transition: all .3s ease;
-    
-    &:hover {
+    text-decoration: none;
+
+    &:hover, &.active {
         border: 1px solid ${({ theme }) => theme.color.white};
-    }
+    };
 
     @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
         border-radius: 30px;
