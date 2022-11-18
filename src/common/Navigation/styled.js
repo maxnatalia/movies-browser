@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as Video } from "../images/Logo.svg";
 
@@ -73,7 +74,7 @@ export const NavigationTitle = styled.h1`
     };
 `;
 
-export const NavigationLink = styled.span`
+export const NavigationLink = styled(NavLink)`
     display: inherit;
     padding: 8px 24px;
     margin: 23px 0 24px 5px;
