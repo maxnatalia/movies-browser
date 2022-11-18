@@ -5,10 +5,6 @@ export const MainWrapper = styled.main`
     margin: 0 auto;
     max-width: 1400px;
     padding: 16px;
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-        padding: 0;
-    }
 `;
 
 export const Header = styled.h2`
@@ -18,60 +14,29 @@ export const Header = styled.h2`
     margin-top: 56px;
     color: ${({ theme }) => theme.color.lightBlack};
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
-        font-size: 28px;
-    }
-
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        font-size: 20px;
-        margin-top: 24px;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-        padding-left: 8px;
+        padding-left: 16px;
     }
 `;
 
 export const TilesContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill, 208px);
     justify-content: center;
-
-    @media (max-width: ${({theme}) => theme.breakpoint.mediumScreen}px) {
-        grid-template-columns: repeat(5, min-content);
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    @media (max-width: ${({theme}) => theme.breakpoint.smallScreen}px) {
-        grid-template-columns: repeat(4, min-content);
-    }
+    gap: 24px;
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
-        grid-template-columns: repeat(3, min-content);
-        
-    }
-
-    @media (max-width: ${({theme}) => theme.breakpoint.oldIphone}px) {
-        grid-template-columns: repeat(2, min-content);
-        justify-content: center;
-        grid-gap: 16px;
-    }
-
-    @media (max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
-        grid-template-columns: repeat(1, min-content);
-        justify-content: center;
+        grid-template-columns: repeat(auto-fill, 136px);
+        gap: 16px;
     }
 `;
 
 export const TilePerson = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     background-color: ${({ theme }) => theme.color.white};
-    min-width: 208px;
+    max-width: 208px;
+    width: 100%;
     min-height: 339px;
     padding: 16px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
@@ -87,8 +52,8 @@ export const TilePerson = styled.div`
         transform: scale(1.07);
     }
 
-    @media (max-width: ${({theme}) => theme.breakpoint.mediumScreen}px) {
-        min-width: 136px;
+    @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
+        max-width: 136px;
         min-height: 245px;
         padding: 8px;
     }
@@ -100,11 +65,6 @@ export const ImageWrapper = styled.div`
     width: 100%;
     max-height: 231px;
     display: flex;
-
-    @media (max-width: ${({theme}) => theme.breakpoint.mediumScreen}px) {
-        max-width: 120px;
-        max-height: 178px;
-    }
 `;
 
 export const Image = styled.img`
@@ -126,7 +86,7 @@ export const Title = styled.h3`
     margin: 0;
     padding-top: 12px;
 
-    @media (max-width: ${({theme}) => theme.breakpoint.mediumScreen}px) {
+    @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
         font-size: 14px;
         padding-top: 8px;
     }
