@@ -1,5 +1,6 @@
 import React from "react";
 import Search from "./Search";
+import { Link } from "react-router-dom";
 import { Nav, NavigationHeader, NavigationLink, NavigationLogoWrapper, NavigationTitle, NavigationWrapper, VideoIcon } from "./styled";
 
 const Navigation = () => {
@@ -8,12 +9,14 @@ const Navigation = () => {
         <NavigationHeader>
             <NavigationWrapper>
                 <NavigationLogoWrapper>
-                    <VideoIcon />
+                    <Link to="/">
+                        <VideoIcon />
+                    </Link>
                     <NavigationTitle>Movie Browser</NavigationTitle>
                 </NavigationLogoWrapper>
                 <Nav>
-                    <NavigationLink>Movies</NavigationLink>
-                    <NavigationLink>People</NavigationLink>
+                    <NavigationLink to="/movies">Movies</NavigationLink>
+                    {/* <NavigationLink>People</NavigationLink> */}
                 </Nav>
                 <Search />
             </NavigationWrapper>
