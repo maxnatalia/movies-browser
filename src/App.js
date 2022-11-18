@@ -4,6 +4,7 @@ import { theme } from "./theme";
 import { GlobalStyle } from "./GlobalStyle";
 import MoviesList from "./features/movies/MoviesList";
 import Navigation from "./common/Navigation";
+import PeopleList from "./features/people/PeopleList";
 
 function App() {
   return (
@@ -15,9 +16,9 @@ function App() {
           <Route path="/movies">
             <MoviesList />
           </Route>
-          {/* <Route path="/people">
+          <Route path="/people">
           <PeopleList />
-        </Route> */}
+        </Route>
           <Route path="/">
             <Redirect to="/movies" />
           </Route>
