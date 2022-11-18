@@ -16,7 +16,7 @@ const Navigation = () => {
                 </NavigationLogoWrapper>
                 <Nav>
                     <NavigationLink to="/movies">Movies</NavigationLink>
-                    {/* <NavigationLink>People</NavigationLink> */}
+                    <NavigationLink to="/people">People</NavigationLink>
                 </Nav>
                 <Search />
             </NavigationWrapper>
