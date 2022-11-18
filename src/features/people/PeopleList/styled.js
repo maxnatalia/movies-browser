@@ -46,7 +46,6 @@ export const TilesContainer = styled.div`
 
     @media (max-width: ${({theme}) => theme.breakpoint.smallScreen}px) {
         grid-template-columns: repeat(4, min-content);
-        
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
@@ -56,6 +55,8 @@ export const TilesContainer = styled.div`
 
     @media (max-width: ${({theme}) => theme.breakpoint.oldIphone}px) {
         grid-template-columns: repeat(2, min-content);
+        justify-content: center;
+        grid-gap: 16px;
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
