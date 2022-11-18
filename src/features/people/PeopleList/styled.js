@@ -40,17 +40,18 @@ export const TilesContainer = styled.div`
 
     @media (max-width: ${({theme}) => theme.breakpoint.mediumScreen}px) {
         grid-template-columns: repeat(5, min-content);
-        grid-gap: 20px;
+        width: 100%;
+        justify-content: space-between;
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.smallScreen}px) {
         grid-template-columns: repeat(4, min-content);
-        grid-gap: 18px;
+        
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
         grid-template-columns: repeat(3, min-content);
-        grid-gap: 16px;
+        
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.oldIphone}px) {
@@ -59,6 +60,7 @@ export const TilesContainer = styled.div`
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMin}px) {
         grid-template-columns: repeat(1, min-content);
+        justify-content: center;
     }
 `;
 
