@@ -5,6 +5,7 @@ import { GlobalStyle } from "./GlobalStyle";
 import MoviesList from "./features/movies/MoviesList";
 import Navigation from "./common/Navigation";
 import PeopleList from "./features/people/PeopleList";
+import Details from "./common/Details";
 
 function App() {
   return (
@@ -14,11 +15,11 @@ function App() {
         <Navigation />
         <Switch>
           <Route path="/movies">
-            <MoviesList />
+            <Details />
           </Route>
           <Route path="/people">
-          <PeopleList />
-        </Route>
+            <PeopleList />
+          </Route>
           <Route path="/">
             <Redirect to="/movies" />
           </Route>
@@ -26,6 +27,6 @@ function App() {
       </HashRouter>
     </ThemeProvider>
   );
-};
+}
 
 export default App;
