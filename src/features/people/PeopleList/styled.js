@@ -14,8 +14,10 @@ export const Header = styled.h2`
     margin-top: 56px;
     color: ${({ theme }) => theme.color.lightBlack};
 
+
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        padding-left: 16px;
+        font-size: 20px;
+        padding-left: 8px;
     }
 `;
 
