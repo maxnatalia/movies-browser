@@ -6,6 +6,8 @@ export const DetailsWrapper = styled.div`
   margin-top: 64px;
   display: grid;
   grid-template-columns: auto 1fr;
+  box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
+  margin-bottom: 100px;
 `;
 
 export const DetailsImage = styled.img`
@@ -105,33 +107,45 @@ export const RatingWrapper = styled.div`
 
 export const StarIcon = styled(Star)`
   width: 24px;
+  height: 24px;
   align-self: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     width: 16px;
-    height: 15px;
+    height: 16px;
   }
+
+  ${({ infoMain }) => infoMain && css`
+    width: 40px;
+    height: 40px;
+  `}
 `;
 
 export const Rate = styled.div`
   font-weight: 500;
   font-size: 22px;
-  line-height: 29px;
+  line-height: 1.3;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     font-size: 13px;
-    line-height: 17px;
   }
+
+  ${({ infoMain }) => infoMain && css`
+    font-size: 30px;
+  `}
 `;
 
 export const Votes = styled.div`
   font-weight: 400;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 1.2;
   padding-bottom: 4px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     font-size: 13px;
-    line-height: 17px;
   }
+
+  ${({ infoMain }) => infoMain && css`
+    font-size: 16px;
+  `}
 `;
