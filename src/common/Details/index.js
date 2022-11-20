@@ -3,14 +3,14 @@ import { ReactComponent as Star } from "../images/Star.svg";
 
 export const DetailsWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
-  margin-top: 64px;
+  margin: 64px 0 40px 0;
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
   box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
-  margin-bottom: 100px;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-    margin-top: 16px;
+    margin: 16px 0 24px 0;
   }
 `;
 
@@ -29,6 +29,8 @@ export const DetailsImage = styled.img`
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     width: 114px;
     height: 169px;
+    grid-column: 1;
+    grid-row: 1;
   }
 
   ${({ person }) => person && css`
@@ -49,10 +51,12 @@ export const DetailsImage = styled.img`
 `;
 
 export const TextWrapper = styled.div`
-  margin: 40px 40px 0 0;
+  margin: 40px 40px 24px 0;
+  grid-column: 2;
+  grid-row: 1;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
-    margin: 16px 16px 0 0;
+    margin: 16px 16px 16px 0;
   }
 `;
 
@@ -139,12 +143,40 @@ export const DetailsText = styled.div`
   `}
 
   ${({ mobileHidden }) => mobileHidden && css`
-    display: none;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+      display: none;
+    }
+  `}
+
+  ${({ longText }) => longText && css`
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+      margin: 0 0 16px 0
+    }
   `}
 `;
 
 export const Info = styled.div`
   margin: 24px 0 0 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    margin: 0 16px; 
+  }
+
+  ${({ mobileVisible }) => mobileVisible && css`
+    display: none;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+      display: block;
+    }
+  `}
+
+  ${({ mobileHidden }) => mobileHidden && css`
+    display: block;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+      display: none;
+    }
+  `}
 `;
 
 export const TagsWrapper = styled.div`
