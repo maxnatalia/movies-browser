@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const MainWrapper = styled.main`
-  margin: 0 auto;
-  max-width: 1368px;
+  margin: 0 auto 64px auto;
+  max-width: 1400px;
   padding: 0 16px;
 `;
 
