@@ -16,6 +16,7 @@ import {
   AdditionalInfoWrapper,
 } from "../../../common/Details";
 import { PosterWrapper, PosterDisplay, MainInfoWrapper, MainInfoTitle } from "../../movies/MovieDetails/styled";
+import PeopleList from "../../people/PeopleList";
 import image from "../../../common/images/poster.png";
 
 const MovieDetails = () => {
@@ -62,15 +63,24 @@ const MovieDetails = () => {
               <Votes mobileHidden>/ 10</Votes>
               <Votes mobile>335 votes</Votes>
             </RatingWrapper>
-            <Info>
-              <DetailsText>
+            <Info mobileHidden>
+              <DetailsText longText>
                 A young Chinese maiden disguises herself as a male warrior in order to save her father. Disguises
                 herself as a male warrior in order to save her father. A young Chinese maiden disguises herself as a
                 male warrior in order to save her father.
               </DetailsText>
             </Info>
           </TextWrapper>
+          <Info mobileVisible>
+              <DetailsText longText>
+                A young Chinese maiden disguises herself as a male warrior in order to save her father. Disguises
+                herself as a male warrior in order to save her father. A young Chinese maiden disguises herself as a
+                male warrior in order to save her father.
+              </DetailsText>
+            </Info>
         </DetailsWrapper>
+        <PeopleList />
+        <PeopleList />
       </MainWrapper>
     </>
   );
