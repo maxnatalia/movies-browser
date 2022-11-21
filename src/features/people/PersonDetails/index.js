@@ -35,8 +35,8 @@ const PersonDetails = () => {
           </DetailsText>
         </Info>
       </DetailsWrapper>
-      <MoviesList />
-      <MoviesList />
+      <MoviesList insideDetails/>
+      <MoviesList insideDetails/>
     </MainWrapper>
   );
 };

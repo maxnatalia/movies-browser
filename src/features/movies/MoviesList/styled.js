@@ -1,11 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ReactComponent as Star } from "../../../common/images/Star.svg";
 import video from "../../../common/images/Video.svg";
 
 export const MainWrapper = styled.main`
     margin: 0 auto;
     max-width: 1400px;
-    padding: 16px;
+    padding: 0 16px;
+
+    ${({ insideDetails }) => insideDetails && css`
+        padding: 0;
+    `}
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
         padding: 8px;

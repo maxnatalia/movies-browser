@@ -1,10 +1,9 @@
 import { MainWrapper, Header, TilesContainer, TilePerson, ImageWrapper, Image, Title } from "./styled";
 import poster from "../../../common/images/posterPerson.png";
 
-const PeopleList = () => {
+const PeopleList = ({ insideDetails }) => {
     return (
-
-        <MainWrapper>
+        <MainWrapper insideDetails={insideDetails}>
             <Header>Popular people</Header>
             <TilesContainer>
                 <TilePerson>

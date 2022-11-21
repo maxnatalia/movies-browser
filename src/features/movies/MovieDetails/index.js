@@ -78,8 +78,8 @@ const MovieDetails = () => {
             </DetailsText>
           </Info>
         </DetailsWrapper>
-        <PeopleList />
-        <PeopleList />
+        <PeopleList insideDetails/>
+        <PeopleList insideDetails/>
       </MainWrapper>
     </>
   );

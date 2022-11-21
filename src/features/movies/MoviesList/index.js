@@ -17,9 +17,9 @@ import {
 } from "./styled";
 import poster from "../../../common/images/poster.png";
 
-const MoviesList = () => {
+const MoviesList = ({ insideDetails }) => {
     return (
-            <MainWrapper>
+            <MainWrapper insideDetails={insideDetails}>
                 <Header>Popular movies</Header>
                 <TilesContainer>
                     <TileMovie>

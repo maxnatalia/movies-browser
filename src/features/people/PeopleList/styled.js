@@ -1,10 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import person from "../../../common/images/Person.svg";
 
 export const MainWrapper = styled.main`
     margin: 0 auto;
     max-width: 1400px;
     padding: 16px;
+
+    ${({ insideDetails }) => insideDetails && css`
+        padding: 0;
+    `}
 `;
 
 export const Header = styled.h2`
