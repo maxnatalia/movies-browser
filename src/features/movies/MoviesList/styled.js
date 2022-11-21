@@ -146,6 +146,10 @@ export const Title = styled.h3`
     margin-bottom: 8px;
     word-break: break-word;
     max-width: 292px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+        margin-top: 0;
+    }
 `;
 
 export const StyledDate = styled.div`
@@ -187,7 +191,7 @@ export const Tag = styled.div`
 export const RatingWrapper = styled.div`
     display: flex;
     gap: 12px;
-    align-items: flex-end;
+    align-items: flex-start;
     flex-grow: 1;
 `;
 
