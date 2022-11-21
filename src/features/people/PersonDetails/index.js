@@ -26,21 +26,14 @@ const PersonDetails = () => {
             <DetailsText additionalQuestion>Place of birth:</DetailsText>
             <DetailsText additionalAnswer>Wuhan, Hubei, China</DetailsText>
           </AdditionalInfoWrapper>
-          <Info mobileHidden>
-            <DetailsText longText>
-              Liu Yifei was born in Wuhan, Hubei, Province of China on August 25th, 1987. She began modeling at the age
-              of 8 and was trained in singing, dancing and the piano. Moving to the United States at 10 with her mother,
-              Liu lived there for four years.
-            </DetailsText>
-          </Info>
-          </TextWrapper>
-          <Info mobileVisible>
-            <DetailsText longText>
-              Liu Yifei was born in Wuhan, Hubei, Province of China on August 25th, 1987. She began modeling at the age
-              of 8 and was trained in singing, dancing and the piano. Moving to the United States at 10 with her mother,
-              Liu lived there for four years.
-            </DetailsText>
-          </Info>
+        </TextWrapper>
+        <Info>
+          <DetailsText>
+            Liu Yifei was born in Wuhan, Hubei, Province of China on August 25th, 1987. She began modeling at the age of
+            8 and was trained in singing, dancing and the piano. Moving to the United States at 10 with her mother, Liu
+            lived there for four years.
+          </DetailsText>
+        </Info>
       </DetailsWrapper>
       <MoviesList />
       <MoviesList />

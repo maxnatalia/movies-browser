@@ -19,18 +19,19 @@ export const DetailsImage = styled.img`
   width: 312px;
   height: 464px;
   border-radius: 5px;
+  grid-column: 1;
+  grid-row: 1 / 3;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
     margin: 16px;
     width: 234px;
     height: 348px;
+    grid-row: 1;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     width: 114px;
     height: 169px;
-    grid-column: 1;
-    grid-row: 1;
   }
 
   ${({ person }) => person && css`
@@ -51,12 +52,12 @@ export const DetailsImage = styled.img`
 `;
 
 export const TextWrapper = styled.div`
-  margin: 40px 40px 24px 0;
+  margin: 40px 40px 0 0;
   grid-column: 2;
   grid-row: 1;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
-    margin: 16px 16px 16px 0;
+    margin: 16px 16px 0 0;
   }
 `;
 
@@ -141,42 +142,17 @@ export const DetailsText = styled.div`
       font-size: 12px;
     }
   `}
-
-  ${({ mobileHidden }) => mobileHidden && css`
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-      display: none;
-    }
-  `}
-
-  ${({ longText }) => longText && css`
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-      margin: 0 0 16px 0
-    }
-  `}
 `;
 
 export const Info = styled.div`
-  margin: 24px 0 0 0;
+  margin: 0 40px 40px 0;
+  grid-column: 2;
+  grid-row: 2;
 
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
     grid-column: 1 / 3;
-    grid-row: 2;
     margin: 0 16px; 
   }
-
-  ${({ mobileVisible }) => mobileVisible && css`
-    display: none;
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-      display: block;
-    }
-  `}
-
-  ${({ mobileHidden }) => mobileHidden && css`
-    display: block;
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-      display: none;
-    }
-  `}
 `;
 
 export const TagsWrapper = styled.div`
