@@ -27,7 +27,7 @@ const MovieDetails = () => {
           <MainInfoWrapper>
             <MainInfoTitle>Mulan long title</MainInfoTitle>
             <RatingWrapper>
-              <StarIcon infoMain />
+              <StarIcon display="true" />
               <Rate infoMain>7,8</Rate>
               <Votes infoMain>/ 10</Votes>
               <Votes infoMain normalHidden>

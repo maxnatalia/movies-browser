@@ -222,7 +222,7 @@ export const StarIcon = styled(Star)`
     height: 16px;
   }
 
-  ${({ infoMain }) => infoMain && css`
+  ${({ display }) => display && css`
     width: 40px;
     height: 40px;
 
