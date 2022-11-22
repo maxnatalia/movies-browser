@@ -23,7 +23,7 @@ export const DetailsImage = styled.img`
   grid-row: 1 / 3;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
-    margin: 16px;
+    margin: 16px 16px 0 16px;
     width: 234px;
     height: 348px;
     grid-row: 1;
@@ -39,7 +39,6 @@ export const DetailsImage = styled.img`
     height: 564px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
-      margin: 16px;
       width: 280px;
       height: 395px;
     }
@@ -142,10 +141,14 @@ export const DetailsText = styled.div`
       font-size: 12px;
     }
   `}
+
+  ${({ mobileHidden }) => mobileHidden && css`
+    display: none;
+  `}
 `;
 
 export const Info = styled.div`
-  margin: 0 40px 40px 0;
+  margin: 0 40px 32px 0;
   grid-column: 2;
   grid-row: 2;
 
