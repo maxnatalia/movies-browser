@@ -13,6 +13,10 @@ export const MainWrapper = styled.main`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
         padding: 8px;
+
+        ${({ insideDetails }) => insideDetails && css`
+            padding: 0;
+        `}
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
@@ -28,6 +32,10 @@ export const TilesContainer = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 16px;
+
+        ${({ insideDetails }) => insideDetails && css`
+            grid-gap: 8px;
+        `}
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {

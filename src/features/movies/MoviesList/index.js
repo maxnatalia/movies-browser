@@ -21,7 +21,7 @@ const MoviesList = ({ insideDetails }) => {
     return (
             <MainWrapper insideDetails={insideDetails}>
                 <Header>Popular movies</Header>
-                <TilesContainer>
+                <TilesContainer insideDetails={insideDetails}>
                     <TileMovie>
                         <ImageWrapper>
                             <Image src={poster} alt="" />
