@@ -6,6 +6,8 @@ import MoviesList from "./features/movies/MoviesList";
 import Navigation from "./common/Navigation";
 import PeopleList from "./features/people/PeopleList";
 import Pagination from "./common/Pagination/";
+import MovieDetails from "./features/movies/MovieDetails";
+import PersonDetails from "./features/people/PersonDetails";
 
 function App() {
   return (
@@ -15,10 +17,10 @@ function App() {
         <Navigation />
         <Switch>
           <Route path="/movies">
-            <MoviesList />
+            <MovieDetails />
           </Route>
           <Route path="/people">
-            <PeopleList />
+            <PersonDetails />
           </Route>
           <Route path="/">
             <Redirect to="/movies" />
@@ -28,6 +30,6 @@ function App() {
       </HashRouter>
     </ThemeProvider>
   );
-};
+}
 
 export default App;
