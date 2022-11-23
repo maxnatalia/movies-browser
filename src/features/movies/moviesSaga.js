@@ -1,13 +1,12 @@
 import axios from "axios";
-import { takeLatest, put } from "redux-saga/effects";
-import { fetchError, fetchMoviesSuccess, fetchMovieSuccess } from "./moviesSlice";
+import { takeLatest, put, call } from "redux-saga/effects";
+import { fetchError, fetchMoviesSuccess, fetchMovieSuccess, fetchMovie, fetchMovies } from "./moviesSlice";
 import { apiUrl, apiKey } from "../../apiData";
+import { getMovies } from "./api";
 
-function* fetchMoviesHandler() {
+function* fetchMoviesHandler({ payload }) {
     try {
-        const data = yield axios.get(
-            `${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=1`
-        );
+        const data = yield call(getMovies, payload);
         const movies = yield data.results;
         yield put(
             fetchMoviesSuccess({
