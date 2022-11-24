@@ -38,7 +38,7 @@ const MoviesList = ({ insideDetails }) => {
     }
     return (
         <MainWrapper insideDetails={insideDetails}>
-            {!!loading ? (
+            {loading ? (
                 <Loading />
             ) : (
                 <>
