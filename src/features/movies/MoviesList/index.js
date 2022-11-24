@@ -17,17 +17,22 @@ import {
 } from "./styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies, selectError, selectLoading, selectMovies } from "../moviesSlice";
+import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres } from "../moviesSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 
 const MoviesList = ({ insideDetails }) => {
     const movies = useSelector(selectMovies);
+    const genres = useSelector(selectGenres);
     const loading = useSelector(selectLoading);
     const error = useSelector(selectError);
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (genres.length === 0) {
+            dispatch(fetchGenres());
+        }
+
         dispatch(fetchMovies());
     }, [dispatch]);
 
@@ -56,11 +61,14 @@ const MoviesList = ({ insideDetails }) => {
                                     <StyledDate>
                                         {movie.release_date.slice(0, 4)}
                                     </StyledDate>
-                                    <TagsWrapper>
-                                        <Tag>Action</Tag>
-                                        <Tag>Thriller</Tag>
-                                        <Tag>Action</Tag>
-                                    </TagsWrapper>
+                                    {movie.genre_ids ? 
+                                        <TagsWrapper>
+                                            {movie.genre_ids.map(id => 
+                                                <Tag key={id}>{genres.find(genre => genre.id === id).name}</Tag>
+                                            )}
+                                        </TagsWrapper> 
+                                        : ""
+                                    }
                                     <RatingWrapper>
                                         <StarIcon />
                                         <Rate>{movie.vote_average}</Rate>
