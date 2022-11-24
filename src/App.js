@@ -3,9 +3,11 @@ import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { theme } from "./theme";
 import { GlobalStyle } from "./GlobalStyle";
 import MoviesList from "./features/movies/MoviesList";
+import MovieDetails from "./features/movies/MovieDetails";
 import Navigation from "./common/Navigation";
 import PeopleList from "./features/people/PeopleList";
 import Pagination from "./common/Pagination/";
+import { toPopularMovies, toMovieDetails, toPeople } from "./routes";
 
 function App() {
   return (
@@ -14,14 +16,17 @@ function App() {
       <HashRouter>
         <Navigation />
         <Switch>
-          <Route path="/movies">
+          <Route path={toMovieDetails()}>
+            <MovieDetails />
+          </Route>
+          <Route path={toPopularMovies()}>
             <MoviesList />
           </Route>
-          <Route path="/people">
+          <Route path={toPeople()}>
             <PeopleList />
           </Route>
           <Route path="/">
-            <Redirect to="/movies" />
+            <Redirect to={toPopularMovies()} />
           </Route>
         </Switch>
         <Pagination />

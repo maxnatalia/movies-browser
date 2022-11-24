@@ -199,7 +199,7 @@ export const Tag = styled.div`
 export const RatingWrapper = styled.div`
     display: flex;
     gap: 12px;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-grow: 1;
 `;
 

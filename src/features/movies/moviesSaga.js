@@ -6,7 +6,7 @@ function* fetchMoviesHandler() {
     try {
         const data = yield call(getMovies);
         const movies = yield data.results;
-        yield delay(3000);
+        // yield delay(3000);
         yield put(
             fetchMoviesSuccess({
                 movies,
