@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,6 +16,7 @@ import {
   StarIcon,
   Rate,
   Votes,
+  StyledLink,
 } from "./styled";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
@@ -53,9 +53,8 @@ const MoviesList = ({ insideDetails }) => {
           <Header>Popular movies</Header>
           <TilesContainer insideDetails={insideDetails}>
             {movies.map((movie) => (
-              <TileMovie key={movie.id}>
-                <Link to={toMovieDetails({ id: movie.id })}>
-                {console.log(movie.id)}
+              <StyledLink to={toMovieDetails({ id: movie.id })}>
+                <TileMovie key={movie.id}>
                   <ImageWrapper>
                     <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
                   </ImageWrapper>
@@ -77,8 +76,8 @@ const MoviesList = ({ insideDetails }) => {
                       <Votes>{movie.vote_count} votes</Votes>
                     </RatingWrapper>
                   </ContentWrapper>
-                </Link>
-              </TileMovie>
+                </TileMovie>
+              </StyledLink>
             ))}
           </TilesContainer>
         </>
