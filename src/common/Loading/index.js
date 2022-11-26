@@ -6,7 +6,7 @@ const Loading = () => {
   return (
     <>
       <Message search>Search results for “Mulan”</Message>
-      <Wrapper loading>
+      <Wrapper loadingComponent>
         <LoadingIcon />
       </Wrapper>
     </>
