@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import MainWrapper from "../../../common/MainWrapper";
 import {
   DetailsImage,
@@ -16,10 +19,29 @@ import {
   AdditionalInfoWrapper,
 } from "../../../common/Details";
 import { PosterWrapper, PosterDisplay, MainInfoWrapper, MainInfoTitle } from "../../movies/MovieDetails/styled";
+import Loading from "../../../common/Loading";
+import Error from "../../../common/Error";
 import PeopleList from "../../people/PeopleList";
+import { changeMovieId, fetchMovieDetails, selectError, selectLoading } from "./movieDetailsSlice";
 import image from "../../../common/images/poster.png";
 
 const MovieDetails = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(changeMovieId(id));
+    dispatch(fetchMovieDetails());
+  });
+
+  if (loading) {
+    return <Loading />;
+  } else if (error) {
+    return <Error />;
+  }
+
   return (
     <>
       <PosterDisplay>
@@ -78,8 +100,8 @@ const MovieDetails = () => {
             </DetailsText>
           </Info>
         </DetailsWrapper>
-        <PeopleList insideDetails/>
-        <PeopleList insideDetails/>
+        <PeopleList insideDetails />
+        <PeopleList insideDetails />
       </MainWrapper>
     </>
   );

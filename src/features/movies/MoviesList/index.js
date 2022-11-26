@@ -53,8 +53,8 @@ const MoviesList = ({ insideDetails }) => {
           <Header>Popular movies</Header>
           <TilesContainer insideDetails={insideDetails}>
             {movies.map((movie) => (
-              <StyledLink to={toMovieDetails({ id: movie.id })}>
-                <TileMovie key={movie.id}>
+              <StyledLink key={movie.id} to={toMovieDetails({ id: movie.id })}>
+                <TileMovie>
                   <ImageWrapper>
                     <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
                   </ImageWrapper>
