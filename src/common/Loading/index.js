@@ -2,11 +2,12 @@ import Message from "../Message";
 import Wrapper from "../Wrapper";
 import { ReactComponent as LoadingIcon } from "../images/loading.svg";
 
-const Loading = () => {
+const Loading = ({ loadingMessage }) => {
+
   return (
     <>
-      <Message search>Search results for “Mulan”</Message>
-      <Wrapper loading>
+      <Message search>{loadingMessage}</Message>
+      <Wrapper loading="true" >
         <LoadingIcon />
       </Wrapper>
     </>
