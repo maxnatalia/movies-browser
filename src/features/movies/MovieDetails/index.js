@@ -95,7 +95,7 @@ const MovieDetails = () => {
             {movie.genres ? (
               <TagsWrapper>
                 {movie.genres.map((genre) => (
-                  <Tag key={id}>{genre.name}</Tag>
+                  <Tag key={genre.id}>{genre.name}</Tag>
                 ))}
               </TagsWrapper>
             ) : (
