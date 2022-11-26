@@ -17,7 +17,7 @@ import {
 } from "./styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres } from "../moviesSlice";
+import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres, selectQuery } from "../moviesSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 
@@ -26,6 +26,7 @@ const MoviesList = ({ insideDetails }) => {
     const genres = useSelector(selectGenres);
     const loading = useSelector(selectLoading);
     const error = useSelector(selectError);
+    const query = useSelector(selectQuery);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -46,12 +47,12 @@ const MoviesList = ({ insideDetails }) => {
     return (
         <MainWrapper insideDetails={insideDetails}>
             {loading ? (
-                <Loading />
+                <Loading loadingMessage={query ? `Search results for "${query}"` : ""}/>
             ) : (
                 <>
-                    <Header>Popular movies</Header>
+                    <Header>{query ? `Search results for "${query}" (${movies.total_results})` : `Popular movies`}</Header>
                     <TilesContainer insideDetails={insideDetails}>
-                        {movies.map(movie =>
+                        {movies.results.map(movie =>
                             <TileMovie
                                 key={movie.id}
                             >
@@ -61,14 +62,14 @@ const MoviesList = ({ insideDetails }) => {
                                 <ContentWrapper>
                                     <Title>{movie.original_title}</Title>
                                     <StyledDate>
-                                        {movie.release_date.slice(0, 4)}
+                                        {movie.release_date ? movie.release_date.slice(0, 4) : ""}
                                     </StyledDate>
-                                    {movie.genre_ids ? 
+                                    {movie.genre_ids ?
                                         <TagsWrapper>
-                                            {movie.genre_ids.map(id => 
+                                            {movie.genre_ids.map(id =>
                                                 <Tag key={id}>{genres.find(genre => genre.id === id).name}</Tag>
                                             )}
-                                        </TagsWrapper> 
+                                        </TagsWrapper>
                                         : ""
                                     }
                                     <RatingWrapper>
