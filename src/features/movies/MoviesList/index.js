@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres, selectQuery } from "../moviesSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
+import Pagination from "../../../common/Pagination";
+import NoResults from "../../../common/NoResults";
 
 const MoviesList = ({ insideDetails }) => {
     const movies = useSelector(selectMovies);
@@ -39,16 +41,13 @@ const MoviesList = ({ insideDetails }) => {
         dispatch(fetchMovies());
     }, [dispatch]);
 
-    if (error) {
-        return (
-            <Error />
-        );
-    }
     return (
         <MainWrapper insideDetails={insideDetails}>
-            {loading ? (
-                <Loading loadingMessage={query ? `Search results for "${query}"` : ""}/>
-            ) : (
+            {error && <Error />}
+            {loading && <Loading loadingMessage={query ? `Search results for "${query}"` : ""} />}
+            {movies.total_results === 0 && <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} />}
+
+            {movies.total_results > 1 && !loading &&
                 <>
                     <Header>{query ? `Search results for "${query}" (${movies.total_results})` : `Popular movies`}</Header>
                     <TilesContainer insideDetails={insideDetails}>
@@ -60,7 +59,7 @@ const MoviesList = ({ insideDetails }) => {
                                     <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
                                 </ImageWrapper>
                                 <ContentWrapper>
-                                    <Title>{movie.original_title}</Title>
+                                    <Title>{movie.title}</Title>
                                     <StyledDate>
                                         {movie.release_date ? movie.release_date.slice(0, 4) : ""}
                                     </StyledDate>
@@ -81,8 +80,8 @@ const MoviesList = ({ insideDetails }) => {
                             </TileMovie>
                         )}
                     </TilesContainer>
-                </>
-            )}
+                    <Pagination />
+                </>}
         </MainWrapper>
     )
 };
