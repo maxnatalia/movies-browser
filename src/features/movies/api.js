@@ -1,7 +1,7 @@
 import { apiKey, apiUrl } from "../../apiData";
 
-export const getPopularMovies = async () => {
-    const response = await fetch(`${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=1`);
+export const getPopularMovies = async (page) => {
+    const response = await fetch(`${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=${page}`);
 
     if (!response.ok) {
         throw new Error(response.statusText);
@@ -24,12 +24,12 @@ export const getGenres = async () => {
     return genres;
 };
 
-export const getMoviesByQuery = async (query) => {
+export const getMoviesByQuery = async (query, page) => {
     if (!query) {
         return;
     }
 
-    const response = await fetch(`${apiUrl}search/movie?api_key=${apiKey}&language=en-US&query=${query}`);
+    const response = await fetch(`${apiUrl}search/movie?api_key=${apiKey}&language=en-US&page=${page}&query=${query}`);
 
     if (!response.ok) {
         throw new Error(response.statusText);
@@ -40,10 +40,10 @@ export const getMoviesByQuery = async (query) => {
     return movies;
 };
 
-export const getMovies = (query) => {
+export const getMovies = (query, page) => {
     if (!!query) {
-        return getMoviesByQuery(query);
+        return getMoviesByQuery(query, page);
     }
 
-    return getPopularMovies();
+    return getPopularMovies(page);
 };
