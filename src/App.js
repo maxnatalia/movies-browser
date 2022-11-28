@@ -5,7 +5,6 @@ import { GlobalStyle } from "./GlobalStyle";
 import MoviesList from "./features/movies/MoviesList";
 import Navigation from "./common/Navigation";
 import PeopleList from "./features/people/PeopleList";
-import Pagination from "./common/Pagination/";
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
             <Redirect to="/movies" />
           </Route>
         </Switch>
-        <Pagination />
       </HashRouter>
     </ThemeProvider>
   );
