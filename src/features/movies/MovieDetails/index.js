@@ -18,12 +18,11 @@ import {
   TagsWrapper,
   AdditionalInfoWrapper,
 } from "../../../common/Details";
-import { PosterWrapper, PosterDisplay, MainInfoWrapper, MainInfoTitle } from "../../movies/MovieDetails/styled";
+import Backdrop from "./Backdrop";
 import Loading from "../../../common/Loading";
 import Error from "../../../common/Error";
 import PeopleList from "../../people/PeopleList";
 import { changeMovieId, fetchMovieDetails, selectError, selectLoading, selectMovieDetails } from "./movieDetailsSlice";
-import { apiBackdrop } from "../../../apiData";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
@@ -37,7 +36,7 @@ const MovieDetails = () => {
   useEffect(() => {
     dispatch(changeMovieId(id));
     dispatch(fetchMovieDetails());
-  }, []);
+  }, [id, dispatch]);
 
   useEffect(() => {
     if (releaseDate) {
@@ -54,24 +53,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <PosterDisplay>
-        <PosterWrapper style={{ backgroundImage: `url(${apiBackdrop}${movie.backdrop_path})` }}>
-          <MainInfoWrapper>
-            <MainInfoTitle>{movie.title}</MainInfoTitle>
-            <RatingWrapper>
-              <StarIcon display="true" />
-              <Rate infoMain>{movie.vote_average.toFixed(1)}</Rate>
-              <Votes infoMain>/ 10</Votes>
-              <Votes infoMain normalHidden>
-                {movie.vote_count} votes
-              </Votes>
-            </RatingWrapper>
-            <RatingWrapper mobileHidden>
-              <Votes infoMain>{movie.vote_count} votes</Votes>
-            </RatingWrapper>
-          </MainInfoWrapper>
-        </PosterWrapper>
-      </PosterDisplay>
+      {movie.backdrop_path ? <Backdrop movie={movie}/> : ""}
       <MainWrapper>
         <DetailsWrapper>
           <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
