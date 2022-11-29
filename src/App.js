@@ -6,7 +6,6 @@ import MoviesList from "./features/movies/MoviesList";
 import MovieDetails from "./features/movies/MovieDetails";
 import Navigation from "./common/Navigation";
 import PeopleList from "./features/people/PeopleList";
-import Pagination from "./common/Pagination/";
 import { toPopularMovies, toMovieDetails, toPeople } from "./routes";
 
 
