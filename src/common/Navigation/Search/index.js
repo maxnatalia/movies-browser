@@ -1,19 +1,21 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectQuery, setQuery } from "../../../features/movies/moviesSlice";
+import { useDispatch } from "react-redux";
+import { setQuery } from "../../../features/movies/moviesSlice";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
+import debounce from "lodash.debounce";
 
 const Search = () => {
-    const query = useSelector(selectQuery);
-    const dispatch = useDispatch()
-    const onChangeValue = (event) => dispatch(setQuery(event.target.value));
+
+    const dispatch = useDispatch();
+    const handleChange = debounce((input) => {
+        dispatch(setQuery(input));
+    }, 1000);
 
     return (
         <SearchWrapper>
             <SearchIcon />
             <SearchInput
-                value={query}
-                onChange={onChangeValue}
+                onChange={(event) => handleChange(event.target.value)}
                 type="text"
                 placeholder="Search for movies..."
             />
