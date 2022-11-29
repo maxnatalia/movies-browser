@@ -64,7 +64,7 @@ const MoviesList = ({ insideDetails }) => {
                     <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
                   </ImageWrapper>
                   <ContentWrapper>
-                    <Title>{movie.original_title}</Title>
+                    <Title>{movie.title}</Title>
                     <StyledDate>{movie.release_date.slice(0, 4)}</StyledDate>
                     {movie.genre_ids ? (
                       <TagsWrapper>
