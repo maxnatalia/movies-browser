@@ -57,7 +57,10 @@ const MoviesList = ({ insideDetails }) => {
               <StyledLink key={movie.id} to={toMovieDetails({ id: movie.id })}>
                 <TileMovie>
                   <ImageWrapper>
-                    <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
+                    {movie.poster_path ?
+                      <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} /> :
+                      <Image />
+                    }
                   </ImageWrapper>
                   <ContentWrapper>
                     <Title>{movie.title}</Title>

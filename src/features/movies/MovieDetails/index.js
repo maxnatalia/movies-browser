@@ -56,7 +56,10 @@ const MovieDetails = () => {
       {movie.backdrop_path ? <Backdrop movie={movie}/> : ""}
       <MainWrapper>
         <DetailsWrapper>
-          <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
+          {movie.poster_path ?
+            <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} /> :
+            <DetailsImage />
+          }
           <TextWrapper>
             <DetailsTitle>{movie.title}</DetailsTitle>
             {movie.release_date ? <Year>{movie.release_date.slice(0, 4)}</Year> : ""}
