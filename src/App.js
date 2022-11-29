@@ -9,6 +9,7 @@ import PeopleList from "./features/people/PeopleList";
 import Pagination from "./common/Pagination/";
 import { toPopularMovies, toMovieDetails, toPeople } from "./routes";
 
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -29,7 +30,6 @@ function App() {
             <Redirect to={toPopularMovies()} />
           </Route>
         </Switch>
-        <Pagination />
       </HashRouter>
     </ThemeProvider>
   );

@@ -1,49 +1,102 @@
 import React from "react";
-import { PaginationButton, PaginationInfo, PaginationPageInfo, PaginationVector, PaginationWrapper, PaginatiotButtonInfo } from "./styled";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    selectMovies,
+    selectPage,
+    setPage,
+} from "../../features/movies/moviesSlice";
+import {
+    PaginationButton,
+    PaginationInfo,
+    PaginationPageInfo,
+    PaginationVector,
+    PaginationWrapper,
+    PaginatiotButtonInfo
+} from "./styled";
 
 const Pagination = () => {
 
+    const dispatch = useDispatch()
+    const page = useSelector(selectPage);
+    const movies = useSelector(selectMovies);
+    const lastPage = movies.total_pages > 500 ? 500 : movies.total_pages;
+    const disabledPrev = page !== 1 ? false : true;
+    const disabledNext = page === lastPage ? true : false;
+
     return (
         <PaginationWrapper>
-            <PaginationButton disabled>
-                <PaginationVector disabled />
-                <PaginationVector disabled additionalMobile />
+            <PaginationButton
+                disabled={disabledPrev}
+                onClick={() => dispatch(setPage(1))}
+            >
+                <PaginationVector
+                    disabled={disabledPrev}
+
+                />
+                <PaginationVector
+                    disabled={disabledPrev}
+                    additionalMobile="true"
+                />
                 <PaginatiotButtonInfo>
                     First
                 </PaginatiotButtonInfo>
             </PaginationButton>
-            <PaginationButton disabled>
-                <PaginationVector disabled />
+
+            <PaginationButton
+                disabled={disabledPrev}
+                onClick={() => dispatch(setPage(page - 1))}
+            >
+                <PaginationVector
+                    disabled={disabledPrev}
+                />
                 <PaginatiotButtonInfo>
                     Previous
                 </PaginatiotButtonInfo>
             </PaginationButton>
+
             <PaginationInfo>
                 Page
                 <PaginationPageInfo>
-                    1
+                    {page}
                 </PaginationPageInfo>
                 of
                 <PaginationPageInfo>
-                    500
+                    {lastPage}
                 </PaginationPageInfo>
-            </PaginationInfo>   
-            <PaginationButton>
-            <PaginatiotButtonInfo>
+            </PaginationInfo>
+
+            <PaginationButton
+                disabled={disabledNext}
+                onClick={() => dispatch(setPage(page + 1))}
+            >
+                <PaginatiotButtonInfo>
                     Next
                 </PaginatiotButtonInfo>
-                <PaginationVector right />
+                <PaginationVector
+                    disabled={disabledNext}
+                    right="true"
+                />
             </PaginationButton>
-            <PaginationButton>
-            <PaginatiotButtonInfo>
+
+            <PaginationButton
+                disabled={disabledNext}
+                onClick={() => dispatch(setPage(lastPage))}
+            >
+                <PaginatiotButtonInfo>
                     Last
                 </PaginatiotButtonInfo>
-                <PaginationVector right additionalMobile />
-                <PaginationVector right />
+                <PaginationVector
+                    disabled={disabledNext}
+                    right="true"
+                    additionalMobile="true"
+                />
+                <PaginationVector
+                    disabled={disabledNext}
+                    right="true"
+                />
             </PaginationButton>
         </PaginationWrapper>
     );
 };
-
 
 export default Pagination;

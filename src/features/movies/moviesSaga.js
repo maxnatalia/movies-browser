@@ -1,13 +1,20 @@
-import { takeLatest, put, call, delay } from "redux-saga/effects";
-import { fetchError, fetchMoviesSuccess, fetchMovies, fetchGenres, fetchGenresSuccess } from "./moviesSlice";
-import { getMovies, getGenres } from "./api";
+import { takeLatest, put, call, delay, select } from "redux-saga/effects";
+import { fetchError, fetchMoviesSuccess, fetchMovies, fetchGenres, fetchGenresSuccess, selectQuery, setQuery, setLoadingState, selectPage, setPage } from "./moviesSlice";
+import { getGenres, getMovies } from "./api";
 
 function* fetchMoviesHandler() {
+    const query = yield select(selectQuery);
+    const page = yield select(selectPage);
+
     try {
-        const data = yield call(getMovies);
-        const movies = yield data.results;
-        yield delay(30);
-        yield put(fetchMoviesSuccess({ movies }));
+        yield delay(1000);
+        const data = yield call(getMovies, query, page);
+        const movies = data;
+        yield put(
+            fetchMoviesSuccess({
+                movies,
+            })
+        );
     } catch (error) {
         yield put(fetchError());
     }
@@ -23,7 +30,15 @@ function* fetchGenresHandler() {
     }
 }
 
+function* setOnChangeHandler() {
+    yield put(setLoadingState());
+    yield delay(1000);
+    yield put(fetchMovies());
+};
+
 export function* watchFetchPopularMovies() {
     yield takeLatest(fetchGenres, fetchGenresHandler);
     yield takeLatest(fetchMovies.type, fetchMoviesHandler);
+    yield takeLatest(setQuery.type, setOnChangeHandler);
+    yield takeLatest(setPage.type, setOnChangeHandler);
 }
