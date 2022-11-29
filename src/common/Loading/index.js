@@ -7,7 +7,7 @@ const Loading = ({ loadingMessage }) => {
   return (
     <>
       <Message search>{loadingMessage}</Message>
-      <Wrapper loading="true" >
+      <Wrapper loadingComponent>
         <LoadingIcon />
       </Wrapper>
     </>

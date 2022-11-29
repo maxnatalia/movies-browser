@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     max-width: 300px;
   }
 
-  ${({ loading }) => loading && css`
+  ${({ loadingComponent }) => loadingComponent && css`
     margin-top: 120px;
     width: 91px;
 

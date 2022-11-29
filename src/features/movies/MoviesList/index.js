@@ -1,27 +1,29 @@
-import {
-    MainWrapper,
-    TilesContainer,
-    Header,
-    TileMovie,
-    ImageWrapper,
-    Image,
-    ContentWrapper,
-    Title,
-    StyledDate,
-    TagsWrapper,
-    Tag,
-    RatingWrapper,
-    StarIcon,
-    Rate,
-    Votes
-} from "./styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres, selectQuery } from "../moviesSlice";
+import {
+  MainWrapper,
+  TilesContainer,
+  Header,
+  TileMovie,
+  ImageWrapper,
+  Image,
+  ContentWrapper,
+  Title,
+  StyledDate,
+  TagsWrapper,
+  Tag,
+  RatingWrapper,
+  StarIcon,
+  Rate,
+  Votes,
+  StyledLink,
+} from "./styled";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import Pagination from "../../../common/Pagination";
 import NoResults from "../../../common/NoResults";
+import { toMovieDetails } from "../../../routes";
 
 const MoviesList = ({ insideDetails }) => {
     const movies = useSelector(selectMovies);
@@ -31,15 +33,19 @@ const MoviesList = ({ insideDetails }) => {
     const query = useSelector(selectQuery);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (genres.length === 0) {
-            dispatch(fetchGenres());
-        }
-    });
+  useEffect(() => {
+    if (genres.length === 0) {
+      dispatch(fetchGenres());
+    }
+  });
 
-    useEffect(() => {
-        dispatch(fetchMovies());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
+
+  if (error) {
+    return <Error />;
+  }
 
     return (
         <MainWrapper insideDetails={insideDetails}>
@@ -52,6 +58,7 @@ const MoviesList = ({ insideDetails }) => {
                     <Header>{query ? `Search results for "${query}" (${movies.total_results})` : `Popular movies`}</Header>
                     <TilesContainer insideDetails={insideDetails}>
                         {movies.results.map(movie =>
+                            <StyledLink key={movie.id} to={toMovieDetails({ id: movie.id })}>
                             <TileMovie
                                 key={movie.id}
                             >

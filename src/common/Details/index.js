@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as Star } from "../images/Star.svg";
+import video from "../images/Video.svg";
 
 export const DetailsWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
@@ -21,6 +22,11 @@ export const DetailsImage = styled.img`
   border-radius: 5px;
   grid-column: 1;
   grid-row: 1 / 3;
+  background-image: url(${video});
+  background-size: 35%;
+  background-color: ${({ theme }) => theme.color.silver};
+  background-position: center;
+  background-repeat: no-repeat;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
     margin: 16px 16px 0 16px;
@@ -143,7 +149,9 @@ export const DetailsText = styled.div`
   `}
 
   ${({ mobileHidden }) => mobileHidden && css`
-    display: none;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+      display: none;
+    }
   `}
 `;
 
@@ -192,10 +200,6 @@ export const RatingWrapper = styled.div`
   gap: 12px;
   align-items: flex-end;
   flex-grow: 1;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
-    margin-top: 12px;
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     margin: 0 0 4px 0;
@@ -269,6 +273,7 @@ export const Votes = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
     font-size: 13px;
     padding-bottom: 0;
+    color: ${({ theme }) => theme.color.darkerGrey};
   }
 
   ${({ infoMain }) => infoMain && css`
@@ -277,6 +282,7 @@ export const Votes = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
       font-size: 10px;
       padding-bottom: 2px;
+      color: ${({ theme }) => theme.color.white};
     }
   `}
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bigPoster from "../../../common/images/bigPoster.png";
+import { apiBackdrop } from "../../../../apiData";
 
 export const PosterDisplay = styled.div`
   background-color: ${({ theme }) => theme.color.black};
@@ -13,7 +13,7 @@ export const PosterWrapper = styled.div`
   padding: 0 16px;
   max-width: 1368px;
   height: 769px;
-  background-image: url(${bigPoster});
+  background-image: ${({ image }) => `url(${apiBackdrop}${image})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,4 +1,4 @@
-import { apiKey, apiUrl } from "../../apiData";
+import { apiKey, apiMovieDetails, apiUrl } from "../../apiData";
 
 export const getPopularMovies = async (page) => {
     const response = await fetch(`${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=${page}`);
@@ -30,14 +30,23 @@ export const getMoviesByQuery = async (query, page) => {
     }
 
     const response = await fetch(`${apiUrl}search/movie?api_key=${apiKey}&language=en-US&page=${page}&query=${query}`);
+    
+    const movies = await response.json()
+
+    return movies;
+};
+
+
+export const getMovieDetails = async (id) => {
+    const response = await fetch(`${apiUrl}${apiMovieDetails}${id}?api_key=${apiKey}`);
 
     if (!response.ok) {
         throw new Error(response.statusText);
     }
+    
+    const movieDetails = await response.json();
 
-    const movies = await response.json()
-
-    return movies;
+    return movieDetails;
 };
 
 export const getMovies = (query, page) => {

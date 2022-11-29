@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { ReactComponent as Star } from "../../../common/images/Star.svg";
 import video from "../../../common/images/Video.svg";
@@ -199,7 +200,7 @@ export const Tag = styled.div`
 export const RatingWrapper = styled.div`
     display: flex;
     gap: 12px;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-grow: 1;
 `;
 
@@ -235,4 +236,11 @@ export const Votes = styled.div`
         font-size: 13px;
         line-height: 1.3;
     }
+`;
+
+export const StyledLink = styled(Link)`
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    color: ${({ theme }) => theme.color.black};
 `;
