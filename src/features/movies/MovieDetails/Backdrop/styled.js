@@ -13,7 +13,7 @@ export const PosterWrapper = styled.div`
   padding: 0 16px;
   max-width: 1368px;
   height: 769px;
-  background-image: ${(props) => `url(${apiBackdrop}${props.image})`};
+  background-image: ${({ image }) => `url(${apiBackdrop}${image})`};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
