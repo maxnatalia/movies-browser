@@ -43,10 +43,6 @@ const MoviesList = ({ insideDetails }) => {
     dispatch(fetchMovies());
   }, [dispatch]);
 
-  if (error) {
-    return <Error />;
-  }
-
   return (
     <MainWrapper insideDetails={insideDetails}>
       {error && <Error />}
