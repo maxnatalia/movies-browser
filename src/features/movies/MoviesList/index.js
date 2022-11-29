@@ -61,7 +61,7 @@ const MoviesList = ({ insideDetails }) => {
                   </ImageWrapper>
                   <ContentWrapper>
                     <Title>{movie.title}</Title>
-                    <StyledDate>{movie.release_date.slice(0, 4)}</StyledDate>
+                    {movie.release_date ? <StyledDate>{movie.release_date.slice(0, 4)}</StyledDate> : ""}
                     {movie.genre_ids ? (
                       <TagsWrapper>
                         {movie.genre_ids.map((id) => (

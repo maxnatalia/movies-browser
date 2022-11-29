@@ -59,22 +59,27 @@ const MovieDetails = () => {
           <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="" />
           <TextWrapper>
             <DetailsTitle>{movie.title}</DetailsTitle>
-            <Year>{movie.release_date.slice(0, 4)}</Year>
+            {movie.release_date ? <Year>{movie.release_date.slice(0, 4)}</Year> : ""}
             <AdditionalInfoWrapper>
               <DetailsText additionalQuestion mobileHidden>
                 Production:
               </DetailsText>
-              <DetailsText additionalAnswer>{movie.production_countries.map((country) => country.name)}</DetailsText>
+              <DetailsText additionalAnswer>
+                {movie.production_countries.length !== 0 ? 
+                  movie.production_countries.map((country) => country.name) :
+                  "N/A"
+                }
+              </DetailsText>
             </AdditionalInfoWrapper>
             <AdditionalInfoWrapper secondLine>
               <DetailsText additionalQuestion mobileHidden>
                 Release date:
               </DetailsText>
               <DetailsText additionalAnswer>
-                {date}
+                {date ? date : "N/A"}
               </DetailsText>
             </AdditionalInfoWrapper>
-            {movie.genres ? (
+            {movie.genres.length !== 0 ? (
               <TagsWrapper>
                 {movie.genres.map((genre) => (
                   <Tag key={genre.id}>{genre.name}</Tag>
