@@ -1,11 +1,10 @@
 import { PosterWrapper, PosterDisplay, MainInfoWrapper, MainInfoTitle } from "./styled";
 import { RatingWrapper, StarIcon, Rate, Votes } from "../../../../common/Details";
-import { apiBackdrop } from "../../../../apiData";
 
-const Backdrop = movie => {
+const Backdrop = (movie) => {
   return (
     <PosterDisplay>
-      <PosterWrapper style={{ backgroundImage: `url(${apiBackdrop}${movie.movie.backdrop_path})` }}>
+      <PosterWrapper image={movie.movie.backdrop_path}>
         <MainInfoWrapper>
           <MainInfoTitle>{movie.movie.title}</MainInfoTitle>
           <RatingWrapper>
