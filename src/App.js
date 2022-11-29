@@ -6,7 +6,8 @@ import MoviesList from "./features/movies/MoviesList";
 import MovieDetails from "./features/movies/MovieDetails";
 import Navigation from "./common/Navigation";
 import PeopleList from "./features/people/PeopleList";
-import { toPopularMovies, toMovieDetails, toPeople } from "./routes";
+import PersonDetails from "./features/people/PersonDetails";
+import { toPopularMovies, toMovieDetails, toPeople, toPersonDetails } from "./routes";
 
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
       <HashRouter>
         <Navigation />
         <Switch>
+          <Route path={toPersonDetails()}>
+            <PersonDetails />
+          </Route>
           <Route path={toMovieDetails()}>
             <MovieDetails />
           </Route>

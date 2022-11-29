@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import person from "../../../common/images/Person.svg";
 
@@ -96,4 +97,9 @@ export const Title = styled.h3`
         font-size: 14px;
         padding-top: 8px;
     }
+`;
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: ${({ theme }) => theme.color.black};
 `;
