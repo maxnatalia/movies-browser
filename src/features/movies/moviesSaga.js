@@ -1,24 +1,21 @@
-import { takeLatest, put, call, delay, select } from "redux-saga/effects";
-import { fetchError, fetchMoviesSuccess, fetchMovies, fetchGenres, fetchGenresSuccess, selectQuery, setQuery, setLoadingState, selectPage, setPage } from "./moviesSlice";
-import { getGenres, getMovies } from "./api";
+import { takeLatest, put, call, debounce, delay } from "redux-saga/effects";
+import { fetchError, fetchMoviesSuccess, fetchMovies, fetchGenres, fetchGenresSuccess, fetchMoviesSearch } from "./moviesSlice";
+import { getApi } from "./getApi";
+import { APIpopularMoviesUrl, APIsearchMovieUrl, getGenres } from "./api";
 
-function* fetchMoviesHandler() {
-    const query = yield select(selectQuery);
-    const page = yield select(selectPage);
+function* fetchMoviesHandler({ payload: { query, page } }) {
+    const popularMovies = APIpopularMoviesUrl(page);
+    const searchMovie = APIsearchMovieUrl(query, page);
+    const urlPath = !query ? popularMovies : searchMovie;
 
     try {
-        yield delay(1000);
-        const data = yield call(getMovies, query, page);
-        const movies = data;
-        yield put(
-            fetchMoviesSuccess({
-                movies,
-            })
-        );
+        if (!query) { yield delay(300) };
+        const requestMovies = yield call(getApi, urlPath);
+        yield put(fetchMoviesSuccess(requestMovies));
     } catch (error) {
         yield put(fetchError());
     }
-}
+};
 
 function* fetchGenresHandler() {
     try {
@@ -28,17 +25,10 @@ function* fetchGenresHandler() {
     } catch (error) {
         yield put(fetchError());
     }
-}
-
-function* setOnChangeHandler() {
-    yield put(setLoadingState());
-    yield delay(1000);
-    yield put(fetchMovies());
 };
 
 export function* watchFetchPopularMovies() {
-    yield takeLatest(fetchGenres, fetchGenresHandler);
+    yield debounce(2000, fetchMoviesSearch.type, fetchMoviesHandler);
+    yield takeLatest(fetchGenres.type, fetchGenresHandler);
     yield takeLatest(fetchMovies.type, fetchMoviesHandler);
-    yield takeLatest(setQuery.type, setOnChangeHandler);
-    yield takeLatest(setPage.type, setOnChangeHandler);
 }
