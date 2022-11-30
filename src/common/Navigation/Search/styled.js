@@ -35,7 +35,9 @@ export const SearchInput = styled.input`
         color: ${({ theme }) => theme.color.darkerGrey};
     }
 
-    &:disabled {}
+    &:disabled {
+        cursor: not-allowed;
+    }
 
     @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
         font-size: 15px
