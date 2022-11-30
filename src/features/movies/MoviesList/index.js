@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres, fetchMoviesSearch, selectTotalResults } from "../moviesSlice";
+import {
+  fetchMovies,
+  fetchGenres,
+  selectError,
+  selectLoading,
+  selectMovies,
+  selectGenres,
+  fetchMoviesSearch,
+  selectTotalResults
+} from "../moviesSlice";
 import {
   MainWrapper,
   TilesContainer,
@@ -32,10 +41,9 @@ const MoviesList = ({ insideDetails }) => {
   const genres = useSelector(selectGenres);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const query = useQueryParameter(queryParameters.search);
   const totalResults = useSelector(selectTotalResults);
-  const paramsPage = +useQueryParameter(queryParameters.page);
-  const page = paramsPage === 0 ? 1 : paramsPage;
+  const query = useQueryParameter(queryParameters.search);
+  const page = useQueryParameter(queryParameters.page);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,8 +66,8 @@ const MoviesList = ({ insideDetails }) => {
     <MainWrapper insideDetails={insideDetails}>
       {error && <Error />}
       {loading && <Loading loadingMessage={query ? `Search results for "${query}"` : ""} />}
-      {totalResults === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> : error && <Error />}
-
+      {totalResults === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} />
+        : error && <Error />}
       {totalResults > 1 && !loading &&
         <>
           <Header>{query ? `Search results for "${query}" (${totalResults})` : `Popular movies`}</Header>
