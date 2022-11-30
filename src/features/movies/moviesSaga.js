@@ -1,17 +1,17 @@
 import { takeLatest, put, call, debounce, delay } from "redux-saga/effects";
 import { fetchError, fetchMoviesSuccess, fetchMovies, fetchGenres, fetchGenresSuccess, fetchMoviesSearch } from "./moviesSlice";
 import { getApi } from "./getApi";
-import { APIpopularMoviesUrl, APIsearchMovieUrl, getGenres } from "./api";
+import { getGenres, getPopularMovies, getSearchByQuery } from "./api";
 
 function* fetchMoviesHandler({ payload: { query, page } }) {
-    const popularMovies = APIpopularMoviesUrl(page);
-    const searchMovie = APIsearchMovieUrl(query, page);
+    const popularMovies = getPopularMovies(page);
+    const searchMovie = getSearchByQuery(query, page);
     const urlPath = !query ? popularMovies : searchMovie;
 
     try {
         if (!query) { yield delay(300) };
-        const requestMovies = yield call(getApi, urlPath);
-        yield put(fetchMoviesSuccess(requestMovies));
+        const movies = yield call(getApi, urlPath);
+        yield put(fetchMoviesSuccess(movies));
     } catch (error) {
         yield put(fetchError());
     }
