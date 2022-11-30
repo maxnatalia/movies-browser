@@ -1,26 +1,42 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setQuery } from "../../../features/movies/moviesSlice";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
-import debounce from "lodash.debounce";
+import { useLocation } from "react-router-dom";
+import { useQueryParameter, useReplaceQueryParameter } from "./queryParametersHooks";
+import { queryParameters } from "./queryParameters";
 
 const Search = () => {
 
-    const dispatch = useDispatch();
-    const handleChange = debounce((input) => {
-        dispatch(setQuery(input));
-    }, 1000);
+  const location = useLocation();
+  const query = useQueryParameter(queryParameters.search);
+  const replaceQueryParameter = useReplaceQueryParameter();
 
-    return (
-        <SearchWrapper>
-            <SearchIcon />
-            <SearchInput
-                onChange={(event) => handleChange(event.target.value)}
-                type="text"
-                placeholder="Search for movies..."
-            />
-        </SearchWrapper>
-    );
+  const onInputChange = ({ target }) => {
+    replaceQueryParameter([
+      {
+        key: queryParameters.search,
+        value: target.value.trim() !== "" ? target.value : "",
+      },
+      {
+        key: queryParameters.page,
+        value: 1,
+      },
+    ]);
+  };
+
+  return (
+    <SearchWrapper>
+      <SearchIcon />
+      <SearchInput
+        value={query ? query : ""}
+        onChange={onInputChange}
+        placeholder={`Search for ${location.pathname === "/movies" ||
+            location.pathname.includes("/movie")
+            ? "movies..."
+            : "people..."
+          }`}
+      />
+    </SearchWrapper>
+  );
 };
 
 export default Search;
