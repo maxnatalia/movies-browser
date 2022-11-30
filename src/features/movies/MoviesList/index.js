@@ -58,7 +58,7 @@ const MoviesList = ({ insideDetails }) => {
                 <TileMovie>
                   <ImageWrapper>
                     {movie.poster_path ?
-                      <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} /> :
+                      <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="Movie poster"/> :
                       <Image />
                     }
                   </ImageWrapper>

@@ -57,7 +57,7 @@ const MovieDetails = () => {
       <MainWrapper>
         <DetailsWrapper>
           {movie.poster_path ?
-            <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} /> :
+            <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="Movie poster"/> :
             <DetailsImage />
           }
           <TextWrapper>

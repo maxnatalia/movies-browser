@@ -31,7 +31,10 @@ const PeopleList = ({ insideDetails }) => {
               <StyledLink key={person.id} to={toPersonDetails({ id: person.id })}>
                 <TilePerson key={person.id}>
                   <ImageWrapper>
-                    <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="" />
+                    {person.profile_path ?
+                      <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> :
+                      <Image />
+                    }
                   </ImageWrapper>
                   <Title>{person.name}</Title>
                 </TilePerson>
