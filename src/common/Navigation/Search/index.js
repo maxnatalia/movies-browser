@@ -24,16 +24,17 @@ const Search = () => {
   };
 
   return (
-    <SearchWrapper>
+    <SearchWrapper disabled={location.pathname.includes("/movie-details")}>
       <SearchIcon />
       <SearchInput
         value={query ? query : ""}
         onChange={onInputChange}
         placeholder={`Search for ${location.pathname === "/movies" ||
-            location.pathname.includes("/movie")
-            ? "movies..."
-            : "people..."
+          location.pathname.includes("/movie")
+          ? "movies..."
+          : "people..."
           }`}
+        disabled={location.pathname.includes("/movie-details")}
       />
     </SearchWrapper>
   );
