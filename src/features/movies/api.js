@@ -1,16 +1,20 @@
 import { apiKey, apiMovieDetails, apiUrl } from "../../apiData";
 
-export const getPopularMovies = async (page) => {
-    const response = await fetch(`${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=${page}`);
+export const APIpopularMoviesUrl = page =>
+  `${apiUrl}/movie/popular?api_key=${apiKey}&page=${page}`;
 
-    if (!response.ok) {
-        throw new Error(response.statusText);
-    }
+export const APIsearchMovieUrl = (query, page) =>
+  `${apiUrl}/search/movie?api_key=${apiKey}&query=${query}&page=${page}`;
+  
+// export const getPopularMovies = async (page) => {
+//     const response = await fetch(`${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=${page}`);
 
-    const movies = await response.json();
+//     if (!response.ok) {
+//         throw new Error(response.statusText);
+//     }
 
-    return movies;
-};
+//     await response.json();
+// };
 
 export const getGenres = async () => {
     const response = await fetch(`${apiUrl}genre/movie/list?api_key=${apiKey}`);
@@ -24,17 +28,16 @@ export const getGenres = async () => {
     return genres;
 };
 
-export const getMoviesByQuery = async (query, page) => {
-    if (!query) {
-        return;
-    }
+// export const getMoviesByQuery = async (query, page) => {
+//     const response = await fetch(`${apiUrl}search/movie?api_key=${apiKey}&language=en-US&page=${page}&query=${query}`);
 
-    const response = await fetch(`${apiUrl}search/movie?api_key=${apiKey}&language=en-US&page=${page}&query=${query}`);
-    
-    const movies = await response.json()
+//     if (!response.ok) {
+//         throw new Error(response.statusText);
+//     }
 
-    return movies;
-};
+//     await response.json()
+
+// };
 
 
 export const getMovieDetails = async (id) => {
@@ -43,16 +46,16 @@ export const getMovieDetails = async (id) => {
     if (!response.ok) {
         throw new Error(response.statusText);
     }
-    
+
     const movieDetails = await response.json();
 
     return movieDetails;
 };
 
-export const getMovies = (query, page) => {
-    if (!!query) {
-        return getMoviesByQuery(query, page);
-    }
+// export const getMovies = (query, page) => {
+//     if (!query) {
+//         return getMoviesByQuery(query, page);
+//     }
 
-    return getPopularMovies(page);
-};
+//     return getPopularMovies(page);
+// };
