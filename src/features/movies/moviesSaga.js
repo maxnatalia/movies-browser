@@ -4,6 +4,7 @@ import { getApi } from "./getApi";
 import { getGenres, getPopularMovies, getSearchByQuery } from "./api";
 
 function* fetchMoviesHandler({ payload: { query, page } }) {
+    // const page = yield select(selectPage);
     const popularMovies = getPopularMovies(page);
     const searchMovie = getSearchByQuery(query, page);
     const urlPath = !query ? popularMovies : searchMovie;
@@ -31,4 +32,5 @@ export function* watchFetchPopularMovies() {
     yield debounce(2000, fetchMoviesSearch.type, fetchMoviesHandler);
     yield takeLatest(fetchGenres.type, fetchGenresHandler);
     yield takeLatest(fetchMovies.type, fetchMoviesHandler);
+    // yield takeLatest(setPage.type, fetchMoviesHandler);
 }
