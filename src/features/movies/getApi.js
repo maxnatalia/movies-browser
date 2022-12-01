@@ -1,6 +1,6 @@
-export const getApi = async (APIurl) => {
+export const getApi = async (apiUrl) => {
 
-    const response = await fetch(APIurl);
+    const response = await fetch(apiUrl);
   
     if (!response.ok) {
       throw new Error(response.statusText);
