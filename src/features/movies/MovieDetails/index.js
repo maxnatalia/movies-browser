@@ -22,20 +22,32 @@ import Backdrop from "./Backdrop";
 import Loading from "../../../common/Loading";
 import Error from "../../../common/Error";
 import PeopleList from "../../people/PeopleList";
-import { changeMovieId, fetchMovieDetails, selectError, selectLoading, selectMovieDetails } from "./movieDetailsSlice";
+import { 
+  changeMovieId, 
+  fetchMovieDetails, 
+  selectError, 
+  selectLoadingDetails,
+  selectLoadingCredits, 
+  selectMovieDetails, 
+  fetchMovieCredits,
+  selectMovieCredits,
+} from "./movieDetailsSlice";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const loading = useSelector(selectLoading);
+  const loadingDetails = useSelector(selectLoadingDetails);
+  const loadingCredits = useSelector(selectLoadingCredits);
   const error = useSelector(selectError);
   const movie = useSelector(selectMovieDetails);
+  const credits = useSelector(selectMovieCredits);
   const releaseDate = movie.release_date;
   const [date, setDate] = useState("");
 
   useEffect(() => {
     dispatch(changeMovieId(id));
     dispatch(fetchMovieDetails());
+    dispatch(fetchMovieCredits());
   }, [id, dispatch]);
 
   useEffect(() => {
@@ -45,7 +57,7 @@ const MovieDetails = () => {
     }
   }, [releaseDate]);
   
-  if (loading) {
+  if (loadingDetails) {
     return <Loading />;
   } else if (error) {
     return <Error />;
@@ -102,8 +114,16 @@ const MovieDetails = () => {
             <DetailsText>{movie.overview}</DetailsText>
           </Info>
         </DetailsWrapper>
-        <PeopleList insideDetails />
-        <PeopleList insideDetails />
+        <PeopleList 
+          insideDetails 
+          title="Cast"
+          credits={credits.cast}
+        />
+        <PeopleList 
+          insideDetails 
+          title="Crew"
+          credits={credits.crew}
+        />
       </MainWrapper>
     </>
   );
