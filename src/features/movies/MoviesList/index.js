@@ -37,10 +37,11 @@ const MoviesList = ({ insideDetails }) => {
     if (genres.length === 0) {
       dispatch(fetchGenres());
     }
-  });
+  }, [genres, dispatch]);
 
   useEffect(() => {
     dispatch(fetchMovies());
+    
   }, [dispatch]);
 
   return (
