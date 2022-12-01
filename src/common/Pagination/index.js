@@ -35,7 +35,7 @@ const Pagination = () => {
                 />
                 <PaginationVector
                     disabled={disabledPrev}
-                    additionalMobile="true"
+                    additionalmobile="true"
                 />
                 <PaginatiotButtonInfo>
                     First
@@ -88,7 +88,7 @@ const Pagination = () => {
                 <PaginationVector
                     disabled={disabledNext}
                     right="true"
-                    additionalMobile="true"
+                    additionalmobile="true"
                 />
                 <PaginationVector
                     disabled={disabledNext}

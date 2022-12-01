@@ -80,7 +80,7 @@ export const PaginationVector = styled(Vector)`
         fill: ${({ theme }) => theme.color.darkerGrey};
     `};
 
-    ${({ additionalMobile }) => additionalMobile && css`
+    ${({ additionalmobile }) => additionalmobile && css`
         display: none;
 
         @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {

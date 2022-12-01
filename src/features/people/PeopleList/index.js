@@ -32,8 +32,8 @@ const PeopleList = ({ insideDetails, title, credits }) => {
           <Header>{title ? title : "Popular people"}</Header>
           <TilesContainer>
             {people.map((person) => (
-              <StyledLink key={person.id} to={toPersonDetails({ id: person.id })}>
-                <TilePerson key={person.id}>
+              <StyledLink key={people.indexOf(person)} to={toPersonDetails({ id: person.id })}>
+                <TilePerson>
                   <ImageWrapper>
                     {person.profile_path ?
                       <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> :
@@ -43,9 +43,9 @@ const PeopleList = ({ insideDetails, title, credits }) => {
                   <Title>{person.name}</Title>
                   {
                     person.character ?
-                    <Title role>{person.character}</Title> : 
+                    <Title job>{person.character}</Title> : 
                     person.job ?
-                      <Title role>{person.job}</Title> :
+                      <Title job>{person.job}</Title> :
                       ""
                   }
                 </TilePerson>
