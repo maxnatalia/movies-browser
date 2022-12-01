@@ -1,7 +1,16 @@
 import React from "react";
-import Search from "./Search";
 import { Link } from "react-router-dom";
-import { Nav, NavigationHeader, NavigationLink, NavigationLogoWrapper, NavigationTitle, NavigationWrapper, VideoIcon } from "./styled";
+import { toPeople, toPopularMovies } from "../../routes";
+import Search from "./Search";
+import {
+    Nav,
+    NavigationHeader,
+    NavigationLink,
+    NavigationLogoWrapper,
+    NavigationTitle,
+    NavigationWrapper,
+    VideoIcon
+} from "./styled";
 
 const Navigation = () => {
 
@@ -9,14 +18,14 @@ const Navigation = () => {
         <NavigationHeader>
             <NavigationWrapper>
                 <NavigationLogoWrapper>
-                    <Link to="/">
+                    <Link href="/movies-browser/">
                         <VideoIcon />
                     </Link>
                     <NavigationTitle>Movie Browser</NavigationTitle>
                 </NavigationLogoWrapper>
                 <Nav>
-                    <NavigationLink to="/movies">Movies</NavigationLink>
-                    <NavigationLink to="/people">People</NavigationLink>
+                    <NavigationLink to={toPopularMovies}>Movies</NavigationLink>
+                    <NavigationLink to={toPeople}>People</NavigationLink>
                 </Nav>
                 <Search />
             </NavigationWrapper>
