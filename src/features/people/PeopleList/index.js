@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectError, selectLoading, selectPeople } from "../peopleSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
-import { toPersonDetails } from "../../../routes";
+import Navigation from "../../../common/Navigation";
 
 const PeopleList = ({ insideDetails }) => {
   const people = useSelector(selectPeople);
@@ -20,30 +20,33 @@ const PeopleList = ({ insideDetails }) => {
     return <Error />;
   }
   return (
-    <MainWrapper insideDetails={insideDetails}>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <Header>Popular people</Header>
-          <TilesContainer>
-            {people.map((person) => (
-              <StyledLink key={person.id} to={toPersonDetails({ id: person.id })}>
-                <TilePerson key={person.id}>
-                  <ImageWrapper>
-                    {person.profile_path ?
-                      <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> :
-                      <Image />
-                    }
-                  </ImageWrapper>
-                  <Title>{person.name}</Title>
-                </TilePerson>
-              </StyledLink>
-            ))}
-          </TilesContainer>
-        </>
-      )}
-    </MainWrapper>
+    <>
+      <Navigation />
+      <MainWrapper insideDetails={insideDetails}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Header>Popular people</Header>
+            <TilesContainer>
+              {people.map((person) => (
+                <StyledLink key={person.id} to={`/person/${person.id}`}>
+                  <TilePerson key={person.id}>
+                    <ImageWrapper>
+                      {person.profile_path ?
+                        <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> :
+                        <Image />
+                      }
+                    </ImageWrapper>
+                    <Title>{person.name}</Title>
+                  </TilePerson>
+                </StyledLink>
+              ))}
+            </TilesContainer>
+          </>
+        )}
+      </MainWrapper>
+    </>
   );
 };
 
