@@ -9,7 +9,7 @@ function* fetchMoviesHandler({ payload: { query, page } }) {
     const urlPath = !query ? popularMovies : searchMovie;
 
     try {
-        if (!query) { yield delay(300) };
+        if (!query) { yield delay(1000) };
         const movies = yield call(getApi, urlPath);
         yield put(fetchMoviesSuccess(movies));
     } catch (error) {
