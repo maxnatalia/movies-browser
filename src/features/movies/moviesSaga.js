@@ -7,7 +7,7 @@ function* fetchMoviesHandler() {
     const page = yield select(selectPage);
 
     try {
-        yield delay(1000);
+        yield delay(500);
         const data = yield call(getMovies, query, page);
         const movies = data;
         yield put(
@@ -32,7 +32,7 @@ function* fetchGenresHandler() {
 
 function* setOnChangeHandler() {
     yield put(setLoadingState());
-    yield delay(1000);
+    yield delay(500);
     yield put(fetchMovies());
 };
 
