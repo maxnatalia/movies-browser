@@ -27,17 +27,16 @@ import {
   fetchMovieDetails, 
   selectError, 
   selectLoadingDetails,
-  selectLoadingCredits, 
+  selectLoadingCredits,
   selectMovieDetails, 
-  fetchMovieCredits,
   selectMovieCredits,
 } from "./movieDetailsSlice";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const loadingDetails = useSelector(selectLoadingDetails);
-  const loadingCredits = useSelector(selectLoadingCredits);
+  const loadingMovieDetails = useSelector(selectLoadingDetails);
+  const loadingMovieCredits = useSelector(selectLoadingCredits);
   const error = useSelector(selectError);
   const movie = useSelector(selectMovieDetails);
   const credits = useSelector(selectMovieCredits);
@@ -47,7 +46,6 @@ const MovieDetails = () => {
   useEffect(() => {
     dispatch(changeMovieId(id));
     dispatch(fetchMovieDetails());
-    dispatch(fetchMovieCredits());
   }, [id, dispatch]);
 
   useEffect(() => {
@@ -57,7 +55,11 @@ const MovieDetails = () => {
     }
   }, [releaseDate]);
   
-  if (loadingDetails) {
+  console.log(loadingMovieDetails);
+  console.log(loadingMovieCredits);
+
+
+  if (loadingMovieDetails || loadingMovieCredits) {
     return <Loading />;
   } else if (error) {
     return <Error />;
