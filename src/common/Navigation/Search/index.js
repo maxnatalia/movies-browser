@@ -10,6 +10,19 @@ const Search = () => {
   const query = useQueryParameter(queryParameters.search);
   const replaceQueryParameter = useReplaceQueryParameter();
 
+  const clearInput = ({ target }) => {
+    replaceQueryParameter([
+      {
+        key: queryParameters.search,
+        value: target.value = "",
+      },
+      {
+        key: queryParameters.page,
+        value: 1,
+      },
+    ]);
+  };
+
   const onInputChange = ({ target }) => {
     replaceQueryParameter([
       {
@@ -24,7 +37,7 @@ const Search = () => {
   };
 
   return (
-    <SearchWrapper disabled={location.pathname.includes("/movie-details")}>
+    <SearchWrapper disabled={location.pathname.includes("/movie-details")} >
       <SearchIcon />
       <SearchInput
         value={query ? query : ""}
@@ -35,6 +48,7 @@ const Search = () => {
           : "people..."
           }`}
         disabled={location.pathname.includes("/movie-details")}
+        onClick={clearInput}
       />
     </SearchWrapper>
   );
