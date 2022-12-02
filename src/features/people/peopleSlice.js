@@ -23,6 +23,9 @@ const peopleSlice = createSlice({
             state.loading = false;
             state.error = true;
         },
+        setLoadingFalse: (state) => {
+            state.loading = false;
+        }
     },
 });
 
@@ -30,6 +33,7 @@ export const {
     fetchPeople,
     fetchPeopleSuccess,
     fetchPeopleError,
+    setLoadingFalse,
 } = peopleSlice.actions;
 
 export const selectPeopleState = (state) => state.people;

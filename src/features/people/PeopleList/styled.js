@@ -44,7 +44,7 @@ export const TilePerson = styled.div`
     background-color: ${({ theme }) => theme.color.white};
     max-width: 208px;
     width: 100%;
-    min-height: 339px;
+    height: 100%;
     padding: 16px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     cursor: pointer;
@@ -97,6 +97,19 @@ export const Title = styled.h3`
         font-size: 14px;
         padding-top: 8px;
     }
+
+    ${({ job }) => job && css`
+        color: ${({ theme }) => theme.color.darkerGrey};
+        padding-top: 8px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.5;
+
+        @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
+            line-height: 1.3;
+            font-size: 13px;
+        }
+    `}
 `;
 
 export const StyledLink = styled(Link)`
