@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import MainWrapper from "../../../common/MainWrapper";
 import {
   DetailsImage,
@@ -8,31 +11,70 @@ import {
   Info,
   AdditionalInfoWrapper,
 } from "../../../common/Details";
+import Loading from "../../../common/Loading";
+import Error from "../../../common/Error";
 import MoviesList from "../../movies/MoviesList";
-import image from "../../../common/images/personDetails.png";
+import {
+  changePersonId,
+  fetchPersonDetails,
+  selectError,
+  selectLoadingDetails,
+  selectLoadingCredits,
+  selectPersonDetails,
+  selectPersonCredits,
+} from "./personDetailsSlice";
 
 const PersonDetails = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const loadingPersonDetails = useSelector(selectLoadingDetails);
+  const loadingPersonCredits = useSelector(selectLoadingCredits);
+  const error = useSelector(selectError);
+  const person = useSelector(selectPersonDetails);
+  const credits = useSelector(selectPersonCredits);
+  const birthDate = person.birthday;
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    dispatch(changePersonId(id));
+    dispatch(fetchPersonDetails());
+  }, [id, dispatch]);
+  
+  useEffect(() => {
+    if (birthDate) {
+      const [year, month, day] = birthDate.split("-");
+      setDate(day + "." + month + "." + year);
+    }
+  }, [birthDate]);
+
+  if (loadingPersonDetails || loadingPersonCredits) {
+    return <Loading />;
+  } else if (error) {
+    return <Error />;
+  }
+
+  console.log(date);
+
   return (
     <MainWrapper>
       <DetailsWrapper>
-        <DetailsImage person src={image} alt="" />
+        {person.profile_path ?
+          <DetailsImage person src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> :
+          <DetailsImage />
+        }
         <TextWrapper>
-          <DetailsTitle>Liu Yifei</DetailsTitle>
+          <DetailsTitle>{person.name}</DetailsTitle>
           <AdditionalInfoWrapper>
             <DetailsText additionalQuestion>Date of birth:</DetailsText>
-            <DetailsText additionalAnswer>25.08.1987</DetailsText>
+            <DetailsText additionalAnswer>{date}</DetailsText>
           </AdditionalInfoWrapper>
           <AdditionalInfoWrapper secondLine>
             <DetailsText additionalQuestion>Place of birth:</DetailsText>
-            <DetailsText additionalAnswer>Wuhan, Hubei, China</DetailsText>
+            <DetailsText additionalAnswer>{person.place_of_birth}</DetailsText>
           </AdditionalInfoWrapper>
         </TextWrapper>
         <Info>
-          <DetailsText>
-            Liu Yifei was born in Wuhan, Hubei, Province of China on August 25th, 1987. She began modeling at the age of
-            8 and was trained in singing, dancing and the piano. Moving to the United States at 10 with her mother, Liu
-            lived there for four years.
-          </DetailsText>
+          <DetailsText>{person.biography}</DetailsText>
         </Info>
       </DetailsWrapper>
       <MoviesList insideDetails/>
