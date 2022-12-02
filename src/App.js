@@ -23,11 +23,11 @@ function App() {
           <Route path={toMovieDetails()}>
             <MovieDetails />
           </Route>
-          <Route path={toPopularMovies()}>
-            <MoviesList />
-          </Route>
           <Route path={toPeople()}>
             <PeopleList />
+          </Route>
+          <Route path={toPopularMovies()}>
+            <MoviesList />
           </Route>
           <Route path="/">
             <Redirect to={toPopularMovies()} />
