@@ -7,7 +7,6 @@ const moviesSlice = createSlice({
         error: false,
         movies: [],
         genres: [],
-        movie: null,
         query: "",
         page: 1,
     },
@@ -46,6 +45,9 @@ const moviesSlice = createSlice({
         setPage: (state, { payload: pagination }) => {
             state.page = pagination;
         },
+        setLoadingFalse: (state) => {
+            state.loading = false;
+        }
     },
 });
 
@@ -60,6 +62,7 @@ export const {
     fetchGenresSuccess,
     setQuery,
     setPage,
+    setLoadingFalse,
 } = moviesSlice.actions;
 
 export const selectMoviesState = (state) => state.movies;

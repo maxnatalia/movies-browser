@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres, selectQuery } from "../moviesSlice";
+import { 
+  fetchMovies, 
+  fetchGenres, 
+  selectError, 
+  selectLoading, 
+  selectMovies, 
+  selectGenres, 
+  selectQuery, 
+  setLoadingFalse 
+} from "../moviesSlice";
 import {
   MainWrapper,
   TilesContainer,
@@ -25,37 +34,42 @@ import Pagination from "../../../common/Pagination";
 import NoResults from "../../../common/NoResults";
 import { toMovieDetails } from "../../../routes";
 
-const MoviesList = ({ insideDetails }) => {
-  const movies = useSelector(selectMovies);
+const MoviesList = ({ insideDetails, title, credits }) => {
+  const fetchedMovies = useSelector(selectMovies);
   const genres = useSelector(selectGenres);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const query = useSelector(selectQuery);
   const dispatch = useDispatch();
 
+  const movies = credits ? credits : fetchedMovies.results;
+
   useEffect(() => {
+    if (!credits) {
+      dispatch(fetchMovies());
+    } else {
+      dispatch(setLoadingFalse());
+    }    
+
     if (genres.length === 0) {
       dispatch(fetchGenres());
     }
-  }, [genres, dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchMovies());
-    
-  }, [dispatch]);
+  }, [dispatch, credits, genres]);
 
   return (
     <MainWrapper insideDetails={insideDetails}>
       {error && <Error />}
       {loading && <Loading loadingMessage={query ? `Search results for "${query}"` : ""} />}
-      {movies.total_results === 0 && <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} />}
+      {fetchedMovies.total_results === 0 && <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} />}
 
-      {movies.total_results > 1 && !loading &&
+      {fetchedMovies.total_results > 1 && 
         <>
-          <Header>{query ? `Search results for "${query}" (${movies.total_results})` : `Popular movies`}</Header>
+          <Header>{title ? `${title} (${movies.length})` : 
+            query ? `Search results for "${query}" (${fetchedMovies.total_results})` : `Popular movies`}
+          </Header>
           <TilesContainer insideDetails={insideDetails}>
-            {movies.results.map((movie) => (
-              <StyledLink key={movie.id} to={toMovieDetails({ id: movie.id })}>
+            {movies.map((movie) => (
+              <StyledLink key={movies.indexOf(movie)} to={toMovieDetails({ id: movie.id })}>
                 <TileMovie>
                   <ImageWrapper>
                     {movie.poster_path ?
@@ -85,7 +99,7 @@ const MoviesList = ({ insideDetails }) => {
               </StyledLink>
             ))}
           </TilesContainer>
-          <Pagination />
+          {credits ? "" : <Pagination />}
         </>}
     </MainWrapper>
   )

@@ -52,9 +52,7 @@ const PersonDetails = () => {
   } else if (error) {
     return <Error />;
   }
-
-  console.log(date);
-
+  
   return (
     <MainWrapper>
       <DetailsWrapper>
@@ -66,19 +64,31 @@ const PersonDetails = () => {
           <DetailsTitle>{person.name}</DetailsTitle>
           <AdditionalInfoWrapper>
             <DetailsText additionalQuestion>Date of birth:</DetailsText>
-            <DetailsText additionalAnswer>{date}</DetailsText>
+            <DetailsText additionalAnswer>
+              {date ? date : "N/A"}
+            </DetailsText>
           </AdditionalInfoWrapper>
           <AdditionalInfoWrapper secondLine>
             <DetailsText additionalQuestion>Place of birth:</DetailsText>
-            <DetailsText additionalAnswer>{person.place_of_birth}</DetailsText>
+            <DetailsText additionalAnswer>
+              {person.place_of_birth ? person.place_of_birth : "N/A"}
+            </DetailsText>
           </AdditionalInfoWrapper>
         </TextWrapper>
         <Info>
           <DetailsText>{person.biography}</DetailsText>
         </Info>
       </DetailsWrapper>
-      <MoviesList insideDetails/>
-      <MoviesList insideDetails/>
+      <MoviesList 
+        insideDetails
+        title="Movies - cast"
+        credits={credits.cast} 
+      />
+      <MoviesList 
+        insideDetails
+        title="Movies - crew"
+        credits={credits.crew}
+      />
     </MainWrapper>
   );
 };
