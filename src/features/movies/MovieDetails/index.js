@@ -55,10 +55,6 @@ const MovieDetails = () => {
     }
   }, [releaseDate]);
   
-  console.log(loadingMovieDetails);
-  console.log(loadingMovieCredits);
-
-
   if (loadingMovieDetails || loadingMovieCredits) {
     return <Loading />;
   } else if (error) {
