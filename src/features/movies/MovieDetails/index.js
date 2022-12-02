@@ -78,9 +78,9 @@ const MovieDetails = () => {
                 Production:
               </DetailsText>
               <DetailsText additionalAnswer>
-                {movie.production_countries.length !== 0 ? 
-                  movie.production_countries.map((country) => country.name) :
-                  "N/A"
+                {movie.production_countries.length === 0 ? 
+                  "N/A" :
+                  movie.production_countries.map((country, index) => (index + 1 === movie.production_countries.length) ? country.name : `${country.name}, ` )
                 }
               </DetailsText>
             </AdditionalInfoWrapper>
