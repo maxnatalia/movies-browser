@@ -50,11 +50,11 @@ const MoviesList = ({ insideDetails, title, credits }) => {
     if (!credits) {
       dispatch(fetchMovies());
     } else {
-      if (genres.length === 0) {
-        dispatch(fetchGenres());
-      } else {
-        dispatch(setLoadingFalse());
-      }
+      dispatch(setLoadingFalse());
+    }
+
+    if (genres.length === 0) {
+      dispatch(fetchGenres());
     }
   }, [dispatch, credits, genres]);
 
