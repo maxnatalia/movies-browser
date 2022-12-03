@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import MainWrapper from "../../../common/MainWrapper";
 import {
   DetailsImage,
@@ -31,6 +31,7 @@ import {
   selectMovieDetails, 
   selectMovieCredits,
 } from "./movieDetailsSlice";
+import { changeDateFormat } from "../../functions";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
@@ -40,20 +41,12 @@ const MovieDetails = () => {
   const error = useSelector(selectError);
   const movie = useSelector(selectMovieDetails);
   const credits = useSelector(selectMovieCredits);
-  const releaseDate = movie.release_date;
-  const [date, setDate] = useState("");
+  const date = movie.release_date ? changeDateFormat(movie.release_date) : "";
 
   useEffect(() => {
     dispatch(changeMovieId(id));
     dispatch(fetchMovieDetails());
   }, [id, dispatch]);
-
-  useEffect(() => {
-    if (releaseDate) {
-      const [year, month, day] = releaseDate.split("-");
-      setDate(day + "." + month + "." + year);
-    }
-  }, [releaseDate]);
   
   if (loadingMovieDetails || loadingMovieCredits) {
     return <Loading />;

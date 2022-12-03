@@ -44,8 +44,6 @@ const MoviesList = ({ insideDetails, title, credits }) => {
 
   const movies = credits ? credits : fetchedMovies.results;
 
-  console.log(genres);
-
   useEffect(() => {
     if (!credits) {
       dispatch(fetchMovies());

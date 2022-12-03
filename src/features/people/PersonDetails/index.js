@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import MainWrapper from "../../../common/MainWrapper";
 import {
   DetailsImage,
@@ -23,6 +23,7 @@ import {
   selectPersonDetails,
   selectPersonCredits,
 } from "./personDetailsSlice";
+import { changeDateFormat } from "../../functions";
 
 const PersonDetails = () => {
   const dispatch = useDispatch();
@@ -32,27 +33,19 @@ const PersonDetails = () => {
   const error = useSelector(selectError);
   const person = useSelector(selectPersonDetails);
   const credits = useSelector(selectPersonCredits);
-  const birthDate = person.birthday;
-  const [date, setDate] = useState("");
+  const date = person.birthday ? changeDateFormat(person.birthday) : "";
 
   useEffect(() => {
     dispatch(changePersonId(id));
     dispatch(fetchPersonDetails());
   }, [id, dispatch]);
-  
-  useEffect(() => {
-    if (birthDate) {
-      const [year, month, day] = birthDate.split("-");
-      setDate(day + "." + month + "." + year);
-    }
-  }, [birthDate]);
 
   if (loadingPersonDetails || loadingPersonCredits) {
     return <Loading />;
   } else if (error) {
     return <Error />;
   }
-  
+
   return (
     <MainWrapper>
       <DetailsWrapper>
@@ -64,15 +57,11 @@ const PersonDetails = () => {
           <DetailsTitle>{person.name}</DetailsTitle>
           <AdditionalInfoWrapper>
             <DetailsText additionalQuestion>Date of birth:</DetailsText>
-            <DetailsText additionalAnswer>
-              {date ? date : "N/A"}
-            </DetailsText>
+            <DetailsText additionalAnswer>{date ? date : "N/A"}</DetailsText>
           </AdditionalInfoWrapper>
           <AdditionalInfoWrapper secondLine>
             <DetailsText additionalQuestion>Place of birth:</DetailsText>
-            <DetailsText additionalAnswer>
-              {person.place_of_birth ? person.place_of_birth : "N/A"}
-            </DetailsText>
+            <DetailsText additionalAnswer>{person.place_of_birth ? person.place_of_birth : "N/A"}</DetailsText>
           </AdditionalInfoWrapper>
         </TextWrapper>
         <Info>
@@ -80,14 +69,14 @@ const PersonDetails = () => {
         </Info>
       </DetailsWrapper>
       <MoviesList 
-        insideDetails
-        title="Movies - cast"
+        insideDetails 
+        title="Movies - cast" 
         credits={credits.cast} 
       />
       <MoviesList 
-        insideDetails
-        title="Movies - crew"
-        credits={credits.crew}
+        insideDetails 
+        title="Movies - crew" 
+        credits={credits.crew} 
       />
     </MainWrapper>
   );
