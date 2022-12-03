@@ -1,44 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const movieDetailsSlice = createSlice({
-    name: "movieDetails",
-    initialState: {
-        loadingMovieDetails: true,
-        loadingMovieCredits: true,
-        error: false,
-        movieId: "",
-        movieDetails: [],
-        movieCredits: [],
+  name: "movieDetails",
+  initialState: {
+    loadingMovieDetails: true,
+    loadingMovieCredits: true,
+    error: false,
+    movieId: "",
+    movieDetails: [],
+    movieCredits: [],
+  },
+  reducers: {
+    changeMovieId: (state, { payload: id }) => {
+      state.movieId = id;
     },
-    reducers: {
-        changeMovieId: (state, { payload: id }) => {
-            state.movieId = id;
-        },
-        fetchMovieDetails: () => {},
-        fetchMovieDetailsSuccess: (state, { payload: movie }) => {
-            state.loadingMovieDetails = false;
-            state.movieDetails = movie;
-        },
-        fetchMovieCredits: () => {},
-        fetchMovieCreditsSuccess: (state, { payload: credits }) => {
-            state.loadingMovieCredits = false;
-            state.movieCredits = credits;
-        },
-        fetchError: (state) => {
-            state.loadingMovieDetails = false;
-            state.loadingMovieCredits = false;
-            state.error = true;
-        },
+    fetchMovieDetails: (state) => {
+      state.loadingMovieDetails = true;
+      state.error = false;
+      state.movieDetails = [];
     },
+    fetchMovieDetailsSuccess: (state, { payload: movie }) => {
+      state.loadingMovieDetails = false;
+      state.movieDetails = movie;
+    },
+    fetchMovieCredits: (state) => {
+      state.loadingMovieCredits = true;
+      state.movieCredits = [];
+    },
+    fetchMovieCreditsSuccess: (state, { payload: credits }) => {
+      state.loadingMovieCredits = false;
+      state.movieCredits = credits;
+    },
+    fetchError: (state) => {
+      state.loadingMovieDetails = false;
+      state.loadingMovieCredits = false;
+      state.error = true;
+    },
+  },
 });
 
 export const {
-    changeMovieId,
-    fetchMovieDetails,
-    fetchMovieDetailsSuccess,
-    fetchMovieCredits,
-    fetchMovieCreditsSuccess,
-    fetchError,
+  changeMovieId,
+  fetchMovieDetails,
+  fetchMovieDetailsSuccess,
+  fetchMovieCredits,
+  fetchMovieCreditsSuccess,
+  fetchError,
 } = movieDetailsSlice.actions;
 
 export const selectMovieDetailsState = (state) => state.movieDetails;

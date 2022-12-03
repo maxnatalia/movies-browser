@@ -1,44 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const personDetailsSlice = createSlice({
-    name: "personDetails",
-    initialState: {
-        loadingPersonDetails: true,
-        loadingPersonCredits: true,
-        error: false,
-        personId: "",
-        personDetails: [],
-        personCredits: [],
+  name: "personDetails",
+  initialState: {
+    loadingPersonDetails: true,
+    loadingPersonCredits: true,
+    error: false,
+    personId: "",
+    personDetails: [],
+    personCredits: [],
+  },
+  reducers: {
+    changePersonId: (state, { payload: id }) => {
+      state.personId = id;
     },
-    reducers: {
-        changePersonId: (state, { payload: id }) => {
-            state.personId = id;
-        },
-        fetchPersonDetails: () => {},
-        fetchPersonDetailsSuccess: (state, { payload: person }) => {
-            state.loadingPersonDetails = false;
-            state.personDetails = person;
-        },
-        fetchPersonCredits: () => {},
-        fetchPersonCreditsSuccess: (state, { payload: credits }) => {
-            state.loadingPersonCredits = false;
-            state.personCredits = credits;
-        },
-        fetchError: (state) => {
-            state.loadingPersonDetails = false;
-            state.loadingPersonCredits = false;
-            state.error = true;
-        },
+    fetchPersonDetails: (state) => {
+      state.loadingPersonDetails = true;
+      state.error = false;
+      state.personDetails = [];
     },
+    fetchPersonDetailsSuccess: (state, { payload: person }) => {
+      state.loadingPersonDetails = false;
+      state.personDetails = person;
+    },
+    fetchPersonCredits: (state) => {
+      state.loadingPersonCredits = true;
+      state.personCredits = [];
+    },
+    fetchPersonCreditsSuccess: (state, { payload: credits }) => {
+      state.loadingPersonCredits = false;
+      state.personCredits = credits;
+    },
+    fetchError: (state) => {
+      state.loadingPersonDetails = false;
+      state.loadingPersonCredits = false;
+      state.error = true;
+    },
+  },
 });
 
 export const {
-    changePersonId,
-    fetchPersonDetails,
-    fetchPersonDetailsSuccess,
-    fetchPersonCredits,
-    fetchPersonCreditsSuccess,
-    fetchError,
+  changePersonId,
+  fetchPersonDetails,
+  fetchPersonDetailsSuccess,
+  fetchPersonCredits,
+  fetchPersonCreditsSuccess,
+  fetchError,
 } = personDetailsSlice.actions;
 
 export const selectPersonDetailsState = (state) => state.personDetails;
