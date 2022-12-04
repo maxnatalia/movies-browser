@@ -18,7 +18,7 @@ const Navigation = () => {
         <NavigationHeader>
             <NavigationWrapper>
                 <NavigationLogoWrapper>
-                    <Link href="/movies-browser/">
+                    <Link to="/">
                         <VideoIcon />
                     </Link>
                     <NavigationTitle>Movie Browser</NavigationTitle>
