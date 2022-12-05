@@ -1,10 +1,4 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    selectMovies,
-    selectPage,
-    setPage,
-} from "../../features/movies/moviesSlice";
 import {
     PaginationButton,
     PaginationInfo,
@@ -14,20 +8,16 @@ import {
     PaginatiotButtonInfo
 } from "./styled";
 
-const Pagination = () => {
-
-    const dispatch = useDispatch()
-    const page = useSelector(selectPage);
-    const movies = useSelector(selectMovies);
-    const lastPage = movies.total_pages > 500 ? 500 : movies.total_pages;
-    const disabledPrev = page !== 1 ? false : true;
-    const disabledNext = page === lastPage ? true : false;
+const Pagination = ({ setPageParamsToUrl, page, totalPages }) => {
+    const disabledPrev = page <= 1;
+    const lastPage = totalPages > 500 ? 500 : totalPages;
+    const disabledNext = page === lastPage;
 
     return (
         <PaginationWrapper>
             <PaginationButton
                 disabled={disabledPrev}
-                onClick={() => dispatch(setPage(1))}
+                onClick={() => setPageParamsToUrl(1)}
             >
                 <PaginationVector
                     disabled={disabledPrev}
@@ -44,7 +34,7 @@ const Pagination = () => {
 
             <PaginationButton
                 disabled={disabledPrev}
-                onClick={() => dispatch(setPage(page - 1))}
+                onClick={() => setPageParamsToUrl(page - 1)}
             >
                 <PaginationVector
                     disabled={disabledPrev}
@@ -67,7 +57,7 @@ const Pagination = () => {
 
             <PaginationButton
                 disabled={disabledNext}
-                onClick={() => dispatch(setPage(page + 1))}
+                onClick={() => setPageParamsToUrl(page + 1)}
             >
                 <PaginatiotButtonInfo>
                     Next
@@ -80,7 +70,7 @@ const Pagination = () => {
 
             <PaginationButton
                 disabled={disabledNext}
-                onClick={() => dispatch(setPage(lastPage))}
+                onClick={() => setPageParamsToUrl(lastPage)}
             >
                 <PaginatiotButtonInfo>
                     Last

@@ -32,7 +32,8 @@ import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import Pagination from "../../../common/Pagination";
 import NoResults from "../../../common/NoResults";
-import { toMovieDetails } from "../../../routes";
+import Navigation from "../../../common/Navigation";
+import { usePageParams } from "../ulrSearchParams";
 
 const MoviesList = ({ insideDetails, title, credits }) => {
   const fetchedMovies = useSelector(selectMovies);
@@ -40,7 +41,9 @@ const MoviesList = ({ insideDetails, title, credits }) => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const query = useSelector(selectQuery);
+  const page = useSelector(selectPage);
   const dispatch = useDispatch();
+  const setPageParamsToUrl = usePageParams();
 
   const movies = credits ? credits : fetchedMovies.results;
 

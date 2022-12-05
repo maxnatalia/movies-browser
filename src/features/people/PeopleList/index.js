@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectError, selectLoading, selectPeople, setLoadingFalse } from "../peopleSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
-import { toPersonDetails } from "../../../routes";
+import Navigation from "../../../common/Navigation";
 
 const PeopleList = ({ insideDetails, title, credits }) => {
   const fetchedPeople = useSelector(selectPeople);
