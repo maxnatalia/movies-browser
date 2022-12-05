@@ -25,7 +25,7 @@ const Pagination = ({ setPageParamsToUrl, page, totalPages }) => {
                 />
                 <PaginationVector
                     disabled={disabledPrev}
-                    additionalMobile="true"
+                    additionalmobile="true"
                 />
                 <PaginatiotButtonInfo>
                     First
@@ -78,7 +78,7 @@ const Pagination = ({ setPageParamsToUrl, page, totalPages }) => {
                 <PaginationVector
                     disabled={disabledNext}
                     right="true"
-                    additionalMobile="true"
+                    additionalmobile="true"
                 />
                 <PaginationVector
                     disabled={disabledNext}

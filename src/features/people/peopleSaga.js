@@ -6,7 +6,7 @@ function* fetchPeopleHandler() {
     try {
         const data = yield call(getPeople);
         const people = yield data.results;
-        yield delay(1000);
+        yield delay(500);
         yield put(
             fetchPeopleSuccess({
                 people,

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import MainWrapper from "../../../common/MainWrapper";
 import {
   DetailsImage,
@@ -22,30 +22,33 @@ import Backdrop from "./Backdrop";
 import Loading from "../../../common/Loading";
 import Error from "../../../common/Error";
 import PeopleList from "../../people/PeopleList";
-import { changeMovieId, fetchMovieDetails, selectError, selectLoading, selectMovieDetails } from "./movieDetailsSlice";
+import { 
+  changeMovieId, 
+  fetchMovieDetails, 
+  selectError, 
+  selectLoadingDetails,
+  selectLoadingCredits,
+  selectMovieDetails, 
+  selectMovieCredits,
+} from "./movieDetailsSlice";
+import { changeDateFormat } from "../../functions";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const loading = useSelector(selectLoading);
+  const loadingMovieDetails = useSelector(selectLoadingDetails);
+  const loadingMovieCredits = useSelector(selectLoadingCredits);
   const error = useSelector(selectError);
   const movie = useSelector(selectMovieDetails);
-  const releaseDate = movie.release_date;
-  const [date, setDate] = useState("");
+  const credits = useSelector(selectMovieCredits);
+  const date = movie.release_date ? changeDateFormat(movie.release_date) : "";
 
   useEffect(() => {
     dispatch(changeMovieId(id));
     dispatch(fetchMovieDetails());
   }, [id, dispatch]);
-
-  useEffect(() => {
-    if (releaseDate) {
-      const [year, month, day] = releaseDate.split("-");
-      setDate(day + "." + month + "." + year);
-    }
-  }, [releaseDate]);
   
-  if (loading) {
+  if (loadingMovieDetails || loadingMovieCredits) {
     return <Loading />;
   } else if (error) {
     return <Error />;
@@ -68,9 +71,9 @@ const MovieDetails = () => {
                 Production:
               </DetailsText>
               <DetailsText additionalAnswer>
-                {movie.production_countries.length !== 0 ? 
-                  movie.production_countries.map((country) => country.name) :
-                  "N/A"
+                {movie.production_countries.length === 0 ? 
+                  "N/A" :
+                  movie.production_countries.map((country, index) => (index + 1 === movie.production_countries.length) ? country.name : `${country.name}, ` )
                 }
               </DetailsText>
             </AdditionalInfoWrapper>
@@ -102,8 +105,16 @@ const MovieDetails = () => {
             <DetailsText>{movie.overview}</DetailsText>
           </Info>
         </DetailsWrapper>
-        <PeopleList insideDetails />
-        <PeopleList insideDetails />
+        <PeopleList 
+          insideDetails 
+          title="Cast"
+          credits={credits.cast}
+        />
+        <PeopleList 
+          insideDetails 
+          title="Crew"
+          credits={credits.crew}
+        />
       </MainWrapper>
     </>
   );
