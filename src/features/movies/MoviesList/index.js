@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres, selectQuery } from "../moviesSlice";
+import { fetchMovies, fetchGenres, selectError, selectLoading, selectMovies, selectGenres, selectQuery, selectPage } from "../moviesSlice";
 import {
   MainWrapper,
   TilesContainer,
@@ -24,6 +24,7 @@ import Loading from "../../../common/Loading";
 import Pagination from "../../../common/Pagination";
 import NoResults from "../../../common/NoResults";
 import Navigation from "../../../common/Navigation";
+import { usePageParams } from "../ulrSearchParams";
 
 const MoviesList = ({ insideDetails }) => {
   const movies = useSelector(selectMovies);
@@ -31,7 +32,9 @@ const MoviesList = ({ insideDetails }) => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const query = useSelector(selectQuery);
+  const page = useSelector(selectPage);
   const dispatch = useDispatch();
+  const setPageParamsToUrl = usePageParams();
 
   useEffect(() => {
     if (genres.length === 0) {
@@ -86,7 +89,11 @@ const MoviesList = ({ insideDetails }) => {
                 </StyledLink>
               ))}
             </TilesContainer>
-            <Pagination />
+            <Pagination 
+              setPageParamsToUrl={setPageParamsToUrl}
+              page={page}
+              totalPages={movies.total_pages}
+            />
           </>}
       </MainWrapper>
     </>
