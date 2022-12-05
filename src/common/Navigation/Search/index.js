@@ -1,5 +1,5 @@
 import debounce from "lodash.debounce";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { createSearchParams } from "react-router-dom";
 import { queryParamName, useQueryParams } from "../../../features/movies/ulrSearchParams";
@@ -11,31 +11,24 @@ const Search = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [queryParam, setQueryParamToUrl] = useQueryParams();
-    const [inputValue, setInputValue] = useState(queryParam);
 
-    const handleQueryOnChange = useCallback(
-        debounce(value => {
-            if (location.pathname !== toPopularMovies) {
-                navigate({
-                    pathname: toPopularMovies,
-                    search: createSearchParams({ [queryParamName]: value }).toString()
-                });
-            } else {
-                setQueryParamToUrl(value);
-            };
-        }, 1000), 
-        []);
-
-    useEffect(() => {
-        handleQueryOnChange(inputValue);
-    }, [inputValue, handleQueryOnChange])
+    const handleQueryOnChange = debounce(({ target }) => {
+        if (location.pathname !== toPopularMovies) {
+            navigate({
+                pathname: toPopularMovies,
+                search: createSearchParams({ [queryParamName]: target.value }).toString()
+            });
+        } else {
+            setQueryParamToUrl(target.value);
+        };
+    }, 1000);
 
     return (
         <SearchWrapper>
             <SearchIcon />
             <SearchInput
-                onChange={({ target }) => setInputValue(target.value)}
-                value={inputValue || ""}
+                onChange={handleQueryOnChange}
+                defaultValue={queryParam || ""}
                 type="text"
                 placeholder="Search for movies..."
             />

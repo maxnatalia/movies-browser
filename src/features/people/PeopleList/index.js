@@ -11,7 +11,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
- 
+
   const people = credits ? credits : fetchedPeople;
 
   useEffect(() => {
@@ -27,38 +27,41 @@ const PeopleList = ({ insideDetails, title, credits }) => {
   }
 
   return (
-    <MainWrapper insideDetails={insideDetails}>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <Header>{title ? title : "Popular people"}</Header>
-          <TilesContainer>
-            {people.map((person) => (
-              <StyledLink key={people.indexOf(person)} to={toPersonDetails({ id: person.id })}>
-                <TilePerson>
-                  <ImageWrapper>
-                    {person.profile_path ? (
-                      <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" />
+    <>
+      <Navigation />
+      <MainWrapper insideDetails={insideDetails}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Header>{title ? title : "Popular people"}</Header>
+            <TilesContainer>
+              {people.map((person) => (
+                <StyledLink key={people.indexOf(person)} to={`/person/${people.indexOf(person)}`}>
+                  <TilePerson>
+                    <ImageWrapper>
+                      {person.profile_path ? (
+                        <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" />
+                      ) : (
+                        <Image />
+                      )}
+                    </ImageWrapper>
+                    <Title>{person.name}</Title>
+                    {person.character ? (
+                      <Title job>{person.character}</Title>
+                    ) : person.job ? (
+                      <Title job>{person.job}</Title>
                     ) : (
-                      <Image />
+                      ""
                     )}
-                  </ImageWrapper>
-                  <Title>{person.name}</Title>
-                  {person.character ? (
-                    <Title job>{person.character}</Title>
-                  ) : person.job ? (
-                    <Title job>{person.job}</Title>
-                  ) : (
-                    ""
-                  )}
-                </TilePerson>
-              </StyledLink>
-            ))}
-          </TilesContainer>
-        </>
-      )}
-    </MainWrapper>
+                  </TilePerson>
+                </StyledLink>
+              ))}
+            </TilesContainer>
+          </>
+        )}
+      </MainWrapper>
+    </>
   );
 };
 
