@@ -104,10 +104,14 @@ const MoviesList = ({ insideDetails, title, credits }) => {
                   ))}
                 </TilesContainer>
                 {credits ? "" : 
-                  <Pagination setPageParamsToUrl={setPageParamsToUrl} page={page} totalPages={fetchedMovies.total_pages} />
+                  <Pagination 
+                    setPageParamsToUrl={setPageParamsToUrl} 
+                    page={page} 
+                    totalPages={fetchedMovies.total_pages} 
+                  />
                 }
               </>
-            };
+            }
       </MainWrapper>
     </>
   );

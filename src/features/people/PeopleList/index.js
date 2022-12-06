@@ -61,11 +61,13 @@ const PeopleList = ({ insideDetails, title, credits }) => {
                 </StyledLink>
               ))}
             </TilesContainer>
-            <Pagination
-              setPageParamsToUrl={setPageParamsToUrl}
-              page={page}
-              totalPages={fetchedPeople.total_pages}
-            />
+            {credits ? "" : 
+              <Pagination
+                setPageParamsToUrl={setPageParamsToUrl}
+                page={page}
+                totalPages={fetchedPeople.total_pages}
+              />
+            }
           </>
         )}
       </MainWrapper>
