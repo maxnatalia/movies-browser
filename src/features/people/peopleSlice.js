@@ -30,10 +30,10 @@ const peopleSlice = createSlice({
         setLoadingState: (state) => {
             state.loading = true;
         },
-        setPage: (state, { payload: pagination }) => {
+        setPeoplePage: (state, { payload: pagination }) => {
             state.page = pagination;
         },
-        setQuery: (state, { payload: query }) => {
+        setPeopleQuery: (state, { payload: query }) => {
             state.query = query;
         }
     },
@@ -45,8 +45,8 @@ export const {
     fetchPeopleError,
     setLoadingFalse,
     setLoadingState,
-    setPage,
-    setQuery,
+    setPeoplePage,
+    setPeopleQuery,
 } = peopleSlice.actions;
 
 export const selectPeopleState = (state) => state.people;
