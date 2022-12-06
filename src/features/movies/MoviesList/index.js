@@ -95,7 +95,7 @@ const MoviesList = ({ insideDetails, title, credits }) => {
                           }
                           <RatingWrapper>
                             <StarIcon />
-                            <Rate>{movie.vote_average}</Rate>
+                            <Rate>{movie.vote_average.toFixed(1)}</Rate>
                             <Votes>{movie.vote_count} votes</Votes>
                           </RatingWrapper>
                         </ContentWrapper>
