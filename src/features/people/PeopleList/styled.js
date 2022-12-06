@@ -29,7 +29,6 @@ export const Header = styled.h2`
 export const TilesContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
-    justify-content: center;
     gap: 24px;
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {

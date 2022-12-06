@@ -27,29 +27,12 @@ export const MainWrapper = styled.main`
 
 export const TilesContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(323px, 1fr));
     grid-gap: 24px;
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 16px;
-
-        ${({ insideDetails }) => insideDetails && css`
-            grid-gap: 8px;
-        `}
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
-    }
     
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         grid-template-columns: 1fr;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-        grid-gap: 8px;
+        grid-gap: 16px;
     }
 `;
 
@@ -75,7 +58,7 @@ export const Header = styled.h2`
 export const TileMovie = styled.div`
     background-color: ${({ theme }) => theme.color.white};
     min-height: 650px;
-    min-width: 324px;
+    width: -webkit-fill-available;
     padding: 16px;
     border-radius: 5px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
@@ -121,6 +104,8 @@ export const ImageWrapper = styled.div`
     border-radius: 5px;
     width: 100%;
     display: flex;
+    width: 292px;
+    align-self: center;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         max-height: 169px;

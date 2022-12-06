@@ -72,8 +72,16 @@ const PersonDetails = () => {
             <DetailsText>{person.biography}</DetailsText>
           </Info>
         </DetailsWrapper>
-        <MoviesList insideDetails title="Movies - cast" credits={credits.cast} />
-        <MoviesList insideDetails title="Movies - crew" credits={credits.crew} />
+        <MoviesList 
+          insideDetails 
+          title="Movies - cast" 
+          credits={credits.cast} 
+        />
+        <MoviesList 
+          insideDetails 
+          title="Movies - crew" 
+          credits={credits.crew}
+        />
       </MainWrapper>
     </>
   );
