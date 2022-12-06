@@ -37,7 +37,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
             <Header>{title ? title : "Popular people"}</Header>
             <TilesContainer>
               {people.map((person) => (
-                <StyledLink key={people.indexOf(person)} to={`/person/${people.indexOf(person)}`}>
+                <StyledLink key={person.id} to={`/person/${person.id}`}>
                   <TilePerson>
                     <ImageWrapper>
                       {person.profile_path ? (
