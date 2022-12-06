@@ -6,6 +6,8 @@ const peopleSlice = createSlice({
         loading: true,
         error: false,
         people: [],
+        page: 1,
+        query: "",
     },
     reducers: {
         fetchPeople: (state) => {
@@ -18,13 +20,21 @@ const peopleSlice = createSlice({
             state.loading = false;
             state.people = payload.people;
         },
-
         fetchPeopleError: (state) => {
             state.loading = false;
             state.error = true;
         },
         setLoadingFalse: (state) => {
             state.loading = false;
+        },
+        setLoadingState: (state) => {
+            state.loading = true;
+        },
+        setPeoplePage: (state, { payload: pagination }) => {
+            state.page = pagination;
+        },
+        setPeopleQuery: (state, { payload: query }) => {
+            state.query = query;
         }
     },
 });
@@ -34,11 +44,16 @@ export const {
     fetchPeopleSuccess,
     fetchPeopleError,
     setLoadingFalse,
+    setLoadingState,
+    setPeoplePage,
+    setPeopleQuery,
 } = peopleSlice.actions;
 
 export const selectPeopleState = (state) => state.people;
 export const selectPeople = (state) => selectPeopleState(state).people;
 export const selectLoading = state => selectPeopleState(state).loading;
 export const selectError = state => selectPeopleState(state).error;
+export const selectPage = state => selectPeopleState(state).page;
+export const selectQuery = state => selectPeopleState(state).query;
 
 export default peopleSlice.reducer;

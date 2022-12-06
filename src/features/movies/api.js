@@ -1,6 +1,6 @@
 import { apiKey, apiMovieDetails, apiUrl } from "../../apiData";
 
-export const getPopularMovies = async (page) => {
+const getPopularMovies = async (page) => {
   const response = await fetch(`${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=${page}`);
 
   if (!response.ok) {
@@ -24,7 +24,7 @@ export const getGenres = async () => {
   return genres;
 };
 
-export const getMoviesByQuery = async (query, page) => {
+const getMoviesByQuery = async (query, page) => {
   if (!query) {
     return;
   }
