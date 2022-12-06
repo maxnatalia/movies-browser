@@ -28,7 +28,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
 
   return (
     <>
-      <Navigation />
+      {credits ? "" : <Navigation />}
       <MainWrapper insideDetails={insideDetails}>
         {loading ? (
           <Loading />

@@ -32,6 +32,7 @@ import {
   selectMovieCredits,
 } from "./movieDetailsSlice";
 import { changeDateFormat } from "../../functions";
+import Navigation from "../../../common/Navigation";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,8 @@ const MovieDetails = () => {
   }
 
   return (
-    <>
+    <> 
+      <Navigation />
       {movie.backdrop_path ? <Backdrop movie={movie}/> : ""}
       <MainWrapper>
         <DetailsWrapper>

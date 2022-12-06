@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { toPeople, toPopularMovies } from "../../routes";
 import Search from "./Search";
 import {
@@ -9,7 +8,8 @@ import {
     NavigationLogoWrapper,
     NavigationTitle,
     NavigationWrapper,
-    VideoIcon
+    VideoIcon,
+    StyledLink,
 } from "./styled";
 
 const Navigation = () => {
@@ -18,9 +18,9 @@ const Navigation = () => {
         <NavigationHeader>
             <NavigationWrapper>
                 <NavigationLogoWrapper>
-                    <Link to="/">
+                    <StyledLink to="/">
                         <VideoIcon />
-                    </Link>
+                    </StyledLink>
                     <NavigationTitle>Movie Browser</NavigationTitle>
                 </NavigationLogoWrapper>
                 <Nav>

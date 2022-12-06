@@ -28,12 +28,11 @@ export const Header = styled.h2`
 
 export const TilesContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, 208px);
-    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
     gap: 24px;
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
-        grid-template-columns: repeat(auto-fill, 136px);
+        grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
         gap: 16px;
     }
 `;
@@ -42,8 +41,7 @@ export const TilePerson = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${({ theme }) => theme.color.white};
-    max-width: 208px;
-    width: 100%;
+    width: -webkit-fill-available;
     height: 100%;
     padding: 16px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
@@ -60,7 +58,6 @@ export const TilePerson = styled.div`
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
-        max-width: 136px;
         min-height: 245px;
         padding: 8px;
     }
@@ -69,9 +66,14 @@ export const TilePerson = styled.div`
 export const ImageWrapper = styled.div`
     background-color: ${({ theme }) => theme.color.silver};
     border-radius: 5px;
-    width: 100%;
+    width: 177px;
     max-height: 231px;
     display: flex;
+    align-self: center;
+
+    @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
+        width: 120px;
+    }
 `;
 
 export const Image = styled.img`

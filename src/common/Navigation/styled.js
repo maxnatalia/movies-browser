@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as Video } from "../images/Logo.svg";
 
@@ -19,7 +19,7 @@ export const NavigationWrapper = styled.div`
     };
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        padding-bottom: 16px;
+        padding: 8px;
     };
 `;
 
@@ -33,11 +33,7 @@ export const NavigationLogoWrapper = styled.div`
     };
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        margin-right: 17px;
-    };
-
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-        margin-right: 10px;
+        margin-right: 8px;
     };
 `;
 
@@ -55,13 +51,10 @@ export const NavigationTitle = styled.h1`
     margin: 0;
     font-weight: 500;
     line-height: 40px;
+    font-size: 24px;
     text-transform: capitalize;
     letter-spacing: -0.5px;
     color: ${({ theme }) => theme.color.white};
-
-    @media(max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
-        font-size: 24px;
-    };
 
     @media(max-width: ${({ theme }) => theme.breakpoint.smallScreen}px) {
         font-size: 20px;
@@ -103,13 +96,7 @@ export const NavigationLink = styled(NavLink)`
         border-radius: 29px;
         font-size: 12px;
         line-height: 18px;
-    };
-
-    @media(max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-        padding: 8px 20px;
-        border-radius: 29px;
-        font-size: 10px;
-        line-height: 16px;
+        padding: 8px;
         margin: 10px 0;
     };
 `;
@@ -123,6 +110,8 @@ export const VideoIcon = styled(Video)`
     };
 `;
 
-
-
-
+export const StyledLink = styled(Link)`
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+`;
