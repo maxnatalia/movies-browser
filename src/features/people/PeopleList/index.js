@@ -1,18 +1,24 @@
 import { MainWrapper, Header, TilesContainer, TilePerson, ImageWrapper, Image, Title, StyledLink } from "./styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, selectError, selectLoading, selectPeople, setLoadingFalse } from "../peopleSlice";
+import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingFalse } from "../peopleSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import Navigation from "../../../common/Navigation";
+import NoResults from "../../../common/NoResults";
+import Pagination from "../../../common/Pagination";
+import { usePageParams } from "../../movies/ulrSearchParams";
 
 const PeopleList = ({ insideDetails, title, credits }) => {
   const fetchedPeople = useSelector(selectPeople);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const query = useSelector(selectQuery);
+  const page = useSelector(selectPage);
+  const setPageParamsToUrl = usePageParams();
   const dispatch = useDispatch();
 
-  const people = credits ? credits : fetchedPeople;
+  const people = credits ? credits : fetchedPeople.results;
 
   useEffect(() => {
     if (!credits) {
@@ -22,17 +28,14 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     }
   }, [dispatch, credits]);
 
-  if (error) {
-    return <Error />;
-  }
-
   return (
     <>
       <Navigation />
       <MainWrapper insideDetails={insideDetails}>
-        {loading ? (
-          <Loading />
-        ) : (
+        {error && <Error />}
+        {loading && <Loading loadingMessage={query ? `Search results for "${query}"` : ""} />}
+        {fetchedPeople.total_results === 0 && <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} />}
+        {people && (
           <>
             <Header>{title ? title : "Popular people"}</Header>
             <TilesContainer>
@@ -58,6 +61,11 @@ const PeopleList = ({ insideDetails, title, credits }) => {
                 </StyledLink>
               ))}
             </TilesContainer>
+            <Pagination
+              setPageParamsToUrl={setPageParamsToUrl}
+              page={page}
+              totalPages={fetchedPeople.total_pages}
+            />
           </>
         )}
       </MainWrapper>
