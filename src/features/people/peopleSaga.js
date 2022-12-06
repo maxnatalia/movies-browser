@@ -6,19 +6,19 @@ import {
     selectQuery,
     selectPage,
     setLoadingState,
-    setQuery,
-    setPage
+    setPeopleQuery,
+    setPeoplePage
 } from "./peopleSlice";
 import { getPeople } from "./api";
 
 function* fetchPeopleHandler() {
-    const page = yield select(selectQuery);
-    const query = yield select(selectPage)
+    const page = yield select(selectPage);
+    const query = yield select(selectQuery)
 
     try {
         yield delay(500);
         const data = yield call(getPeople, query, page);
-        const people = yield data.results;
+        const people = yield data;
         yield put(
             fetchPeopleSuccess({
                 people,
@@ -36,7 +36,7 @@ function* setOnChangeHandler() {
 };
 
 export function* watchFetchPopularPeople() {
-    yield takeLatest(setQuery.type, setOnChangeHandler)
-    yield takeLatest(setPage.type, setOnChangeHandler);
+    yield takeLatest(setPeopleQuery.type, setOnChangeHandler)
+    yield takeLatest(setPeoplePage.type, setOnChangeHandler);
     yield takeLatest(fetchPeople.type, fetchPeopleHandler);
 }
