@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { createSearchParams } from "react-router-dom";
 import { queryParamName, useQueryParams } from "../../../features/movies/ulrSearchParams";
-import { toPopularMovies } from "../../../routes";
+import { toPeople, toPopularMovies } from "../../../routes";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 
 const Search = () => {
@@ -12,12 +12,18 @@ const Search = () => {
     const [queryParam, setQueryParamToUrl] = useQueryParams();
 
     const handleQueryOnChange = debounce(({ target }) => {
-        if (location.pathname !== `${location.pathname.split("/")[1]}`) {
+        if (location.pathname.split("/")[1] === `movie`) {
             navigate({
                 pathname: toPopularMovies,
                 search: createSearchParams({ [queryParamName]: target.value }).toString()
             });
-        } else {
+        } else if (location.pathname.split("/")[1] === `person`) {
+            navigate({
+                pathname: toPeople,
+                search: createSearchParams({ [queryParamName]: target.value }).toString()
+            });
+        }
+        else {
             setQueryParamToUrl(target.value);
         };
     }, 1000);
