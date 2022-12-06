@@ -74,7 +74,7 @@ const MoviesList = ({ insideDetails, title, credits }) => {
                 </Header>
                 <TilesContainer>
                   {movies.map((movie) => (
-                    <StyledLink key={movies.indexOf(movie)} to={`/movie/${movie.id}`}>
+                    <StyledLink key={movies.indexOf(movie)} to={`/movies/movie/${movie.id}`}>
                       <TileMovie>
                         <ImageWrapper>
                           {movie.poster_path ? <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="Movie poster" /> : 

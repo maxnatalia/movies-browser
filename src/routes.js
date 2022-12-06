@@ -5,9 +5,9 @@ import PeopleList from "./features/people/PeopleList";
 import PersonDetails from "./features/people/PersonDetails";
 
 export const toPopularMovies = "/movies";
-export const toMovieDetails = "/movie/:id";
+export const toMovieDetails = "/movies/movie/:id";
 export const toPeople = "/people";
-export const toPersonDetails = "/person/:id";
+export const toPersonDetails = "/people/person/:id";
 
 export const router = createHashRouter(
     createRoutesFromElements(
