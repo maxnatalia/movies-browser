@@ -20,8 +20,8 @@ const Navigation = () => {
                 <NavigationLogoWrapper>
                     <StyledLink to="/">
                         <VideoIcon />
+                        <NavigationTitle>Movie Browser</NavigationTitle>
                     </StyledLink>
-                    <NavigationTitle>Movie Browser</NavigationTitle>
                 </NavigationLogoWrapper>
                 <Nav>
                     <NavigationLink to={toPopularMovies}>Movies</NavigationLink>
