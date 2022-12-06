@@ -64,62 +64,50 @@ const MoviesList = ({ insideDetails, title, credits }) => {
     <>
       {credits ? "" : <Navigation />}
       <MainWrapper insideDetails={insideDetails}>
-        {error && <Error />}
-        {loading && <Loading loadingMessage={query ? `Search results for "${query}"` : ""} />}
-        {fetchedMovies.total_results === 0 && (
-          <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} />
-        )}
-
-        {movies && (
-          <>
-            <Header>
-              {title
-                ? `${title} (${movies.length})`
-                : query
-                  ? `Search results for "${query}" (${fetchedMovies.total_results})`
-                  : `Popular movies`}
-            </Header>
-            <TilesContainer>
-              {movies.map((movie) => (
-                <StyledLink key={movies.indexOf(movie)} to={`/movie/${movie.id}`}>
-                  <TileMovie>
-                    <ImageWrapper>
-                      {movie.poster_path ? (
-                        <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="Movie poster" />
-                      ) : (
-                        <Image />
-                      )}
-                    </ImageWrapper>
-                    <ContentWrapper>
-                      <Title>{movie.title}</Title>
-                      {movie.release_date ? <StyledDate>{movie.release_date.slice(0, 4)}</StyledDate> : ""}
-                      {movie.genre_ids && genres.lenght > 0 ? (
-                        <TagsWrapper>
-                          {movie.genre_ids.map((id) => (
-                            <Tag key={id}>{genres.find((genre) => genre.id === id).name}</Tag>
-                          ))}
-                        </TagsWrapper>
-                      ) : (
-                        ""
-                      )}
-                      <RatingWrapper>
-                        <StarIcon />
-                        <Rate>{movie.vote_average}</Rate>
-                        <Votes>{movie.vote_count} votes</Votes>
-                      </RatingWrapper>
-                    </ContentWrapper>
-                  </TileMovie>
-                </StyledLink>
-              ))}
-            </TilesContainer>
-            {credits ? "" :
-              <Pagination
-                setPageParamsToUrl={setPageParamsToUrl}
-                page={page}
-                totalPages={fetchedMovies.total_pages}
-              />}
-          </>
-        )}
+        {error ? <Error /> :
+          loading ? <Loading loadingMessage={query ? `Search results for "${query}"` : ""} /> : 
+            fetchedMovies.total_results === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
+              <>
+                <Header>
+                  {title ? `${title} (${movies.length})` : 
+                    query ? `Search results for "${query}" (${fetchedMovies.total_results})` : `Popular movies`}
+                </Header>
+                <TilesContainer>
+                  {movies.map((movie) => (
+                    <StyledLink key={movies.indexOf(movie)} to={`/movie/${movie.id}`}>
+                      <TileMovie>
+                        <ImageWrapper>
+                          {movie.poster_path ? <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="Movie poster" /> : 
+                            <Image />
+                          }
+                        </ImageWrapper>
+                        <ContentWrapper>
+                          <Title>{movie.title}</Title>
+                          {movie.release_date ? <StyledDate>{movie.release_date.slice(0, 4)}</StyledDate> : ""}
+                          {movie.genre_ids && genres.lenght > 0 ? 
+                            <TagsWrapper>
+                              {movie.genre_ids.map((id) => (
+                                <Tag key={id}>{genres.find((genre) => genre.id === id).name}</Tag>
+                              ))}
+                            </TagsWrapper>
+                          : 
+                            ""
+                          }
+                          <RatingWrapper>
+                            <StarIcon />
+                            <Rate>{movie.vote_average}</Rate>
+                            <Votes>{movie.vote_count} votes</Votes>
+                          </RatingWrapper>
+                        </ContentWrapper>
+                      </TileMovie>
+                    </StyledLink>
+                  ))}
+                </TilesContainer>
+                {credits ? "" : 
+                  <Pagination setPageParamsToUrl={setPageParamsToUrl} page={page} totalPages={fetchedMovies.total_pages} />
+                }
+              </>
+            };
       </MainWrapper>
     </>
   );
