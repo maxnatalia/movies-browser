@@ -84,7 +84,7 @@ const MoviesList = ({ insideDetails, title, credits }) => {
                         <ContentWrapper>
                           <Title>{movie.title}</Title>
                           {movie.release_date ? <StyledDate>{movie.release_date.slice(0, 4)}</StyledDate> : ""}
-                          {movie.genre_ids && genres.lenght > 0 ? 
+                          {movie.genre_ids && genres ? 
                             <TagsWrapper>
                               {movie.genre_ids.map((id) => (
                                 <Tag key={id}>{genres.find((genre) => genre.id === id).name}</Tag>
