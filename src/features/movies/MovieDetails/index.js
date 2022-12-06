@@ -58,66 +58,71 @@ const MovieDetails = () => {
   return (
     <> 
       <Navigation />
-      {movie.backdrop_path ? <Backdrop movie={movie}/> : ""}
-      <MainWrapper>
-        <DetailsWrapper>
-          {movie.poster_path ?
-            <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="Movie poster"/> :
-            <DetailsImage />
-          }
-          <TextWrapper>
-            <DetailsTitle>{movie.title}</DetailsTitle>
-            {movie.release_date ? <Year>{movie.release_date.slice(0, 4)}</Year> : ""}
-            <AdditionalInfoWrapper>
-              <DetailsText additionalQuestion mobileHidden>
-                Production:
-              </DetailsText>
-              <DetailsText additionalAnswer>
-                {movie.production_countries.length === 0 ? 
-                  "N/A" :
-                  movie.production_countries.map((country, index) => (index + 1 === movie.production_countries.length) ? country.name : `${country.name}, ` )
+      {error ? <Error /> :
+        (loadingMovieDetails || loadingMovieCredits) ? <Loading /> :
+          <>
+            {movie.backdrop_path ? <Backdrop movie={movie}/> : ""}
+            <MainWrapper>
+              <DetailsWrapper>
+                {movie.poster_path ?
+                  <DetailsImage src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="Movie poster"/> :
+                  <DetailsImage />
                 }
-              </DetailsText>
-            </AdditionalInfoWrapper>
-            <AdditionalInfoWrapper secondLine>
-              <DetailsText additionalQuestion mobileHidden>
-                Release date:
-              </DetailsText>
-              <DetailsText additionalAnswer>
-                {date ? date : "N/A"}
-              </DetailsText>
-            </AdditionalInfoWrapper>
-            {movie.genres.length !== 0 ? (
-              <TagsWrapper>
-                {movie.genres.map((genre) => (
-                  <Tag key={genre.id}>{genre.name}</Tag>
-                ))}
-              </TagsWrapper>
-            ) : (
-              ""
-            )}
-            <RatingWrapper mobile>
-              <StarIcon />
-              <Rate>{movie.vote_average.toFixed(1)}</Rate>
-              <Votes mobileHidden>/ 10</Votes>
-              <Votes mobile>{movie.vote_count} votes</Votes>
-            </RatingWrapper>
-          </TextWrapper>
-          <Info>
-            <DetailsText>{movie.overview}</DetailsText>
-          </Info>
-        </DetailsWrapper>
-        <PeopleList 
-          insideDetails 
-          title="Cast"
-          credits={credits.cast}
-        />
-        <PeopleList 
-          insideDetails 
-          title="Crew"
-          credits={credits.crew}
-        />
-      </MainWrapper>
+                <TextWrapper>
+                  <DetailsTitle>{movie.title}</DetailsTitle>
+                  {movie.release_date ? <Year>{movie.release_date.slice(0, 4)}</Year> : ""}
+                  <AdditionalInfoWrapper>
+                    <DetailsText additionalQuestion mobileHidden>
+                      Production:
+                    </DetailsText>
+                    <DetailsText additionalAnswer>
+                      {movie.production_countries.length === 0 ? 
+                        "N/A" :
+                        movie.production_countries.map((country, index) => (index + 1 === movie.production_countries.length) ? country.name : `${country.name}, ` )
+                      }
+                    </DetailsText>
+                  </AdditionalInfoWrapper>
+                  <AdditionalInfoWrapper secondLine>
+                    <DetailsText additionalQuestion mobileHidden>
+                      Release date:
+                    </DetailsText>
+                    <DetailsText additionalAnswer>
+                      {date ? date : "N/A"}
+                    </DetailsText>
+                  </AdditionalInfoWrapper>
+                  {movie.genres.length !== 0 ? 
+                    <TagsWrapper>
+                      {movie.genres.map((genre) => (
+                        <Tag key={genre.id}>{genre.name}</Tag>
+                      ))}
+                    </TagsWrapper>
+                      : 
+                    ""
+                  }
+                  <RatingWrapper mobile>
+                    <StarIcon />
+                    <Rate>{movie.vote_average.toFixed(1)}</Rate>
+                    <Votes mobileHidden>/ 10</Votes>
+                    <Votes mobile>{movie.vote_count} votes</Votes>
+                  </RatingWrapper>
+                </TextWrapper>
+                <Info>
+                  <DetailsText>{movie.overview}</DetailsText>
+                </Info>
+              </DetailsWrapper>
+              <PeopleList 
+                insideDetails 
+                title="Cast"
+                credits={credits.cast}
+              />
+              <PeopleList 
+                insideDetails 
+                title="Crew"
+                credits={credits.crew}
+              />
+            </MainWrapper>
+          </>
+      }
     </>
   );
 };
