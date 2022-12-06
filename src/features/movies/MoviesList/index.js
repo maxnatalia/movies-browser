@@ -62,7 +62,7 @@ const MoviesList = ({ insideDetails, title, credits }) => {
 
   return (
     <>
-      <Navigation />
+      {credits ? "" : <Navigation />}
       <MainWrapper insideDetails={insideDetails}>
         {error && <Error />}
         {loading && <Loading loadingMessage={query ? `Search results for "${query}"` : ""} />}
