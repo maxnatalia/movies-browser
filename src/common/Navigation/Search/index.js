@@ -7,13 +7,12 @@ import { toPopularMovies } from "../../../routes";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 
 const Search = () => {
-
     const location = useLocation();
     const navigate = useNavigate();
     const [queryParam, setQueryParamToUrl] = useQueryParams();
 
     const handleQueryOnChange = debounce(({ target }) => {
-        if (location.pathname !== toPopularMovies) {
+        if (location.pathname !== `${location.pathname.split("/")[1]}`) {
             navigate({
                 pathname: toPopularMovies,
                 search: createSearchParams({ [queryParamName]: target.value }).toString()
