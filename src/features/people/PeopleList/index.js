@@ -32,44 +32,41 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     <>
       {credits ? "" : <Navigation />}
       <MainWrapper insideDetails={insideDetails}>
-        {error && <Error />}
-        {loading && <Loading loadingMessage={query ? `Search results for "${query}"` : ""} />}
-        {fetchedPeople.total_results === 0 && <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} />}
-        {people && (
-          <>
-            <Header>{title ? title : "Popular people"}</Header>
-            <TilesContainer>
-              {people.map((person) => (
-                <StyledLink key={people.indexOf(person)} to={`/people/person/${person.id}`}>
-                  <TilePerson>
-                    <ImageWrapper>
-                      {person.profile_path ? (
-                        <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" />
-                      ) : (
-                        <Image />
-                      )}
-                    </ImageWrapper>
-                    <Title>{person.name}</Title>
-                    {person.character ? (
-                      <Title job>{person.character}</Title>
-                    ) : person.job ? (
-                      <Title job>{person.job}</Title>
-                    ) : (
-                      ""
-                    )}
-                  </TilePerson>
-                </StyledLink>
-              ))}
-            </TilesContainer>
-            {credits ? "" : 
-              <Pagination
-                setPageParamsToUrl={setPageParamsToUrl}
-                page={page}
-                totalPages={fetchedPeople.total_pages}
-              />
-            }
-          </>
-        )}
+        {error ? <Error /> :
+          loading ? <Loading loadingMessage={query ? `Search results for "${query}"` : ""} /> :
+            fetchedPeople.total_results === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
+              <>
+                <Header>{title ? title : "Popular people"}</Header>
+                <TilesContainer>
+                  {people.map((person) => (
+                    <StyledLink key={people.indexOf(person)} to={`/people/person/${person.id}`}>
+                      <TilePerson>
+                        <ImageWrapper>
+                          {person.profile_path ? 
+                            <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> : 
+                            <Image />
+                          }
+                        </ImageWrapper>
+                        <Title>{person.name}</Title>
+                        {person.character ? 
+                          <Title job>{person.character}</Title> : 
+                            person.job ? 
+                              <Title job>{person.job}</Title> : 
+                              ""
+                        }
+                      </TilePerson>
+                    </StyledLink>
+                  ))}
+                </TilesContainer>
+                {credits ? "" : 
+                  <Pagination
+                    setPageParamsToUrl={setPageParamsToUrl}
+                    page={page}
+                    totalPages={fetchedPeople.total_pages}
+                  />
+                }
+              </>
+        }
       </MainWrapper>
     </>
   );
