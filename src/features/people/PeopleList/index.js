@@ -36,7 +36,10 @@ const PeopleList = ({ insideDetails, title, credits }) => {
           loading ? <Loading loadingMessage={query ? `Search results for "${query}"` : ""} /> :
             fetchedPeople.total_results === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
               <>
-                <Header>{title ? title : "Popular people"}</Header>
+                <Header>
+                  {title ? `${title} (${people.length})` : 
+                    query ? `Search results for "${query}" (${fetchedPeople.total_results})` : `Popular movies`}
+                </Header>
                 <TilesContainer>
                   {people.map((person) => (
                     <StyledLink key={people.indexOf(person)} to={`/people/person/${person.id}`}>
