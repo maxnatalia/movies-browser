@@ -27,7 +27,7 @@ export const MainWrapper = styled.main`
 
 export const TilesContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(323px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
     grid-gap: 24px;
     
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
@@ -57,8 +57,8 @@ export const Header = styled.h2`
 
 export const TileMovie = styled.div`
     background-color: ${({ theme }) => theme.color.white};
-    min-height: 650px;
-    width: -webkit-fill-available;
+    height: 650px;
+    width: 324px;
     padding: 16px;
     border-radius: 5px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
@@ -81,10 +81,10 @@ export const TileMovie = styled.div`
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        min-height: 169px;
         flex-direction: row;
         gap: 16px;
         min-width: 288px;
+        height: 201px;
         width: 100%;
     }
 
@@ -100,7 +100,8 @@ export const TileMovie = styled.div`
 
 export const ImageWrapper = styled.div`
     background-color: ${({ theme }) => theme.color.silver};
-    max-height: 434px;
+    height: 100%;
+    min-height: 434px;
     border-radius: 5px;
     width: 100%;
     display: flex;
@@ -108,14 +109,13 @@ export const ImageWrapper = styled.div`
     align-self: center;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        max-height: 169px;
-        max-width: 114px;
+        min-height: 169px;
+        width: 114px;
     }
 `;
 
 export const Image = styled.img`
     height: 100%;
-    width: 100%;
     border-radius: 5px;
     background-size: 30%;
     background-image: url(${video});
@@ -211,6 +211,7 @@ export const Rate = styled.div`
         line-height: 1.3;
     }
 `;
+
 export const Votes = styled.div`
     font-weight: 400;
     font-size: 16px;
