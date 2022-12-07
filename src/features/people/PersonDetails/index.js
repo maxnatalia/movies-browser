@@ -50,7 +50,7 @@ const PersonDetails = () => {
             <MainWrapper>
               <DetailsWrapper>
                 {person.profile_path ? 
-                  <DetailsImage person src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> :
+                  <DetailsImage person src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} alt="Actor image" /> :
                   <DetailsImage />
                 }
                 <TextWrapper>
