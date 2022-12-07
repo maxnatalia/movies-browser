@@ -87,7 +87,7 @@ const MoviesList = ({ insideDetails, title, credits }) => {
                           {movie.genre_ids && genres ? 
                             <TagsWrapper>
                               {movie.genre_ids.map((id) => (
-                                <Tag key={id}>{genres.find((genre) => genre.id === id).name}</Tag>
+                                <Tag key={id}>{genres.find((genre) => genre.id === id)?.name}</Tag>
                               ))}
                             </TagsWrapper>
                           : 
