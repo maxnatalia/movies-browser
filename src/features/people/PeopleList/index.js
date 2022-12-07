@@ -28,8 +28,6 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     }
   }, [dispatch, credits]);
 
-  console.log(people);
-
   return (
     <>
       {credits ? "" : <Navigation />}
