@@ -46,7 +46,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
                       <TilePerson>
                         <ImageWrapper>
                           {person.profile_path ? 
-                            <Image src={`https://image.tmdb.org/t/p/w185${person.profile_path}`} alt="Actor image" /> : 
+                            <Image src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} alt="Actor image" /> : 
                             <Image />
                           }
                         </ImageWrapper>
