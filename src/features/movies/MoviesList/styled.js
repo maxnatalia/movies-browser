@@ -208,6 +208,7 @@ export const Rate = styled.div`
         line-height: 1.3;
     }
 `;
+
 export const Votes = styled.div`
     font-weight: 400;
     font-size: 16px;
