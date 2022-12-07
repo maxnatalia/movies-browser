@@ -100,21 +100,18 @@ export const TileMovie = styled.div`
 
 export const ImageWrapper = styled.div`
     background-color: ${({ theme }) => theme.color.silver};
-    max-height: 434px;
     border-radius: 5px;
     width: 100%;
     display: flex;
-    width: 292px;
     align-self: center;
+    flex-basis: 434px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        max-height: 169px;
-        max-width: 114px;
+        flex-basis: 169px;
     }
 `;
 
 export const Image = styled.img`
-    height: 100%;
     width: 100%;
     border-radius: 5px;
     background-size: 30%;

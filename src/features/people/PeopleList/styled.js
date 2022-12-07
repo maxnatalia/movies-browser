@@ -66,13 +66,13 @@ export const TilePerson = styled.div`
 export const ImageWrapper = styled.div`
     background-color: ${({ theme }) => theme.color.silver};
     border-radius: 5px;
-    width: 177px;
-    max-height: 231px;
+    width: 100%;
     display: flex;
     align-self: center;
+    flex-basis: 264px;
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
-        width: 120px;
+        flex-basis: 178px;
     }
 `;
 
