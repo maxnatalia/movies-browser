@@ -73,7 +73,7 @@ const MoviesList = ({ insideDetails, title, credits }) => {
                     query ? `Search results for "${query}" (${fetchedMovies.total_results})` : `Popular movies`}
                 </Header>
                 <TilesContainer>
-                  {movies.map((movie) => (
+                  {movies?.map((movie) => (
                     <StyledLink key={movies.indexOf(movie)} to={`/movies/movie/${movie.id}`}>
                       <TileMovie>
                         <ImageWrapper>

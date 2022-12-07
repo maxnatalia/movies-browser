@@ -28,6 +28,8 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     }
   }, [dispatch, credits]);
 
+  console.log(people);
+
   return (
     <>
       {credits ? "" : <Navigation />}
@@ -41,7 +43,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
                     query ? `Search results for "${query}" (${fetchedPeople.total_results})` : `Popular movies`}
                 </Header>
                 <TilesContainer>
-                  {people.map((person) => (
+                  {people?.map((person) => (
                     <StyledLink key={people.indexOf(person)} to={`/people/person/${person.id}`}>
                       <TilePerson>
                         <ImageWrapper>
