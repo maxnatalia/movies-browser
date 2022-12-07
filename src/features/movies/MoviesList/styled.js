@@ -107,7 +107,8 @@ export const ImageWrapper = styled.div`
     flex-basis: 434px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        flex-basis: 169px;
+        height: 169px;
+        max-width: 114px;
     }
 `;
 
