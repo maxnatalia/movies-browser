@@ -40,7 +40,7 @@ export const usePageParams = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const [pageParams, setPageParams] = useSearchParams();
-    const pageParam = pageParams.get(pageParamName);
+    const pageParam = +pageParams.get(pageParamName);
 
     useEffect(() => {
         if (location.pathname === toPopularMovies) {
