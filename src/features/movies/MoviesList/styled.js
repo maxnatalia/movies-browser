@@ -57,8 +57,8 @@ export const Header = styled.h2`
 
 export const TileMovie = styled.div`
     background-color: ${({ theme }) => theme.color.white};
-    height: 650px;
-    width: 324px;
+    min-height: 650px;
+    min-width: 324px;
     padding: 16px;
     border-radius: 5px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
@@ -84,7 +84,7 @@ export const TileMovie = styled.div`
         flex-direction: row;
         gap: 16px;
         min-width: 288px;
-        height: 201px;
+        min-height: 201px;
         width: 100%;
     }
 
