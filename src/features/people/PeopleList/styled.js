@@ -16,13 +16,13 @@ export const Header = styled.h2`
     line-height: 1.2;
     font-size: 36px;
     font-weight: 600;
-    margin-top: 56px;
+    margin-top: 40px;
     color: ${({ theme }) => theme.color.lightBlack};
 
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
         font-size: 20px;
-        padding-left: 8px;
+        margin-top: 8px;
     }
 `;
 

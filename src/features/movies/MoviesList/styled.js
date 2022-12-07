@@ -12,14 +12,6 @@ export const MainWrapper = styled.main`
         padding: 0;
     `}
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.mediumScreen}px) {
-        padding: 8px;
-
-        ${({ insideDetails }) => insideDetails && css`
-            padding: 0;
-        `}
-    }
-
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
         padding: 0;
     }
@@ -43,15 +35,9 @@ export const Header = styled.h2`
     margin-top: 56px;
     color: ${({ theme }) => theme.color.lightBlack};
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobile}px) {
-        font-size: 18px;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+        font-size: 20px;
         margin-top: 24px;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMin}px) {
-        font-size: 14px;
-        margin-top: 18px;
-        padding-left: 4px;
     }
 `;
 
