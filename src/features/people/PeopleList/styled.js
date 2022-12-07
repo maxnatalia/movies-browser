@@ -59,8 +59,8 @@ export const TilePerson = styled.div`
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
-        max-height: 245px;
-        max-width: 136px;
+        min-height: 245px;
+        min-width: 136px;
         padding: 8px;
     }
 `;
