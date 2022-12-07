@@ -42,8 +42,8 @@ export const TilePerson = styled.div`
     flex-direction: column;
     margin: 0 auto;
     background-color: ${({ theme }) => theme.color.white};
-    width: 208px;
-    height: 339px;
+    min-width: 208px;
+    min-height: 339px;
     padding: 16px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     cursor: pointer;
