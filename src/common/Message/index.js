@@ -35,6 +35,7 @@ const Message = styled.p`
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
       margin-top: 24px;
+      padding: 16px;
     }
   `}
 `;

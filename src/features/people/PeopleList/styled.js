@@ -32,7 +32,7 @@ export const TilesContainer = styled.div`
     gap: 24px;
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
-        grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+        grid-template-columns: 1fr 1fr;
         gap: 16px;
     }
 `;
@@ -40,9 +40,10 @@ export const TilesContainer = styled.div`
 export const TilePerson = styled.div`
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
     background-color: ${({ theme }) => theme.color.white};
-    width: -webkit-fill-available;
-    height: 100%;
+    width: 208px;
+    height: 339px;
     padding: 16px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     cursor: pointer;
@@ -58,7 +59,8 @@ export const TilePerson = styled.div`
     }
 
     @media (max-width: ${({theme}) => theme.breakpoint.mobileMax}px) {
-        min-height: 245px;
+        max-height: 245px;
+        max-width: 136px;
         padding: 8px;
     }
 `;
