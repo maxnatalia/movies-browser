@@ -2,15 +2,19 @@
 
 Movies Browser is an application based on the graphic design in Figma and created as the finall project of the Frontend Developer course at YouCode. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table
 
 ## Demo
 [Movies Browser - Demo](https://maxnatalia.github.io/movies-browser/)
+
+## Preview 
+
 ## General informations
 
 You can easily browse and search for popular movies and poeple. Additionally, each movie and person has a separate page with information about the crew and cast, etc.
 
-## Preview 
+The Movies Browser application is fully responsive for all popular devices.
+
 ## How to use?
 - On the **Movies page** you can look through currently popular movies. Each movie position includes informations such as title, release year, film genres and viewers' rate. To find out more about the chosen movie, click on its tile, and then you will be redirected to a **movie subpage**.
 
@@ -24,8 +28,6 @@ You can easily browse and search for popular movies and poeple. Additionally, ea
 
 - To **search**, just click on input and type your query. To get person details, or movie details, just click into choosen element.
 
-
-
 ## Authors
 - [Natalia Mazur-Żurek](https://github.com/maxnatalia)
 - [Grzegorz Gołos](https://github.com/golosgit)
@@ -36,8 +38,25 @@ You can easily browse and search for popular movies and poeple. Additionally, ea
 
 This project uses an API provided by [**The Movie Database**](https://www.themoviedb.org/). To use the API, you must create an account and generate a personal *apikey*. 
 
-
-
+## Used technologies and concepts
+- [x] Responsive Web Design - for all popular devices
+- [x] CSS - Flex/Grid/Media Queries
+- [x] HTML - Semantic & accessible HTML
+- [x] JavaScript (ES6+)
+- [x] React
+- [x] React Router v6.4.4
+- [x] React Redux
+- [x] Redux Saga
+- [x] Styled Components
+- [x] Error Handling
+- [x] React Hooks
+- [x] Working with API
+- [x] NPM
+- [x] JSX
+- [x] Trello
+- [x] Figma
+- [x] Team Work
+- [x] This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
