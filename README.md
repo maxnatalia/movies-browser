@@ -2,8 +2,15 @@
 
 Movies Browser is an application based on the graphic design in Figma and created as the finall project of the Frontend Developer course at YouCode. 
 
-## Table
-
+## Table of contents
+1. [Demo](#demo)
+1. [Preview](#preview)
+1. [General informations](#general-informations)
+1. [How to use?](#how-to-use)
+1. [Authors](#authors)
+1. [External sources](#external-sources)
+1. [Used technologiest and concepts](#used-technologies-and-concepts)
+1. [Available Scripts](#available-scripts)
 ## Demo
 [Movies Browser - Demo](https://maxnatalia.github.io/movies-browser/)
 
