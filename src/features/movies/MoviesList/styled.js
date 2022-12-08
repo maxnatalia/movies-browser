@@ -52,9 +52,9 @@ export const TileMovie = styled.div`
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    transition: 1s linear;
 
     &:hover {
-        transition: 1s linear;
         transform: scale(1.05);
         box-shadow: 0 4px 12px rgba(186, 199, 213, 1.5);
     }
