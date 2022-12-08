@@ -1,5 +1,5 @@
-import { PosterWrapper, PosterDisplay, MainInfoWrapper, MainInfoTitle } from "./styled";
 import { RatingWrapper, StarIcon, Rate, Votes } from "../../../../common/Details";
+import { PosterWrapper, PosterDisplay, MainInfoWrapper, MainInfoTitle } from "./styled";
 
 const Backdrop = (movie) => {
   return (

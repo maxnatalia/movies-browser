@@ -1,4 +1,3 @@
-import { MainWrapper, Header, TilesContainer, TilePerson, ImageWrapper, Image, Title, StyledLink } from "./styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingState } from "../peopleSlice";
@@ -8,6 +7,7 @@ import Navigation from "../../../common/Navigation";
 import NoResults from "../../../common/NoResults";
 import Pagination from "../../../common/Pagination";
 import { usePageParams } from "../../../core/ulrSearchParams";
+import { MainWrapper, Header, TilesContainer, TilePerson, ImageWrapper, Image, Title, StyledLink } from "./styled";
 
 const PeopleList = ({ insideDetails, title, credits }) => {
   const fetchedPeople = useSelector(selectPeople);
