@@ -23,7 +23,7 @@ import {
   selectPersonDetails,
   selectPersonCredits,
 } from "./personDetailsSlice";
-import { changeDateFormat } from "../../functions";
+import { changeDateFormat } from "../../../core/functions";
 import Navigation from "../../../common/Navigation";
 
 const PersonDetails = () => {

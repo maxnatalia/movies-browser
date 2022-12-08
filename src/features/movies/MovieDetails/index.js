@@ -31,7 +31,7 @@ import {
   selectMovieDetails, 
   selectMovieCredits,
 } from "./movieDetailsSlice";
-import { changeDateFormat } from "../../functions";
+import { changeDateFormat } from "../../../core/functions";
 import Navigation from "../../../common/Navigation";
 
 const MovieDetails = () => {

@@ -1,5 +1,16 @@
 import { takeLatest, put, call, delay, select } from "redux-saga/effects";
-import { fetchError, fetchMoviesSuccess, fetchMovies, fetchGenres, fetchGenresSuccess, selectQuery, setQuery, setLoadingState, selectPage, setPage } from "./moviesSlice";
+import { 
+    fetchError, 
+    fetchMoviesSuccess, 
+    fetchMovies, 
+    fetchGenres, 
+    fetchGenresSuccess, 
+    selectQuery, 
+    setQuery, 
+    selectPage, 
+    setPage, 
+    setLoadingState
+} from "./moviesSlice";
 import { getGenres, getMovies } from "./api";
 
 function* fetchMoviesHandler() {
@@ -31,7 +42,7 @@ function* fetchGenresHandler() {
 }
 
 function* setOnChangeHandler() {
-    yield put(setLoadingState());
+    yield put(setLoadingState(true));
     yield delay(500);
     yield put(fetchMovies());
 };

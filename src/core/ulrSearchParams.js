@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { toPeople, toPopularMovies } from "../../routes";
-import { setPage, setQuery } from "./moviesSlice";
-import { setPeoplePage, setPeopleQuery } from "../people/peopleSlice";
+import { toPeople, toPopularMovies } from "./routes";
+import { setPage, setQuery } from "../features/movies/moviesSlice";
+import { setPeoplePage, setPeopleQuery } from "../features/people/peopleSlice";
 
 export const queryParamName = "search";
 export const pageParamName = "page";

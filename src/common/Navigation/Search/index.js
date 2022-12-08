@@ -2,8 +2,8 @@ import debounce from "lodash.debounce";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { createSearchParams } from "react-router-dom";
-import { queryParamName, useQueryParams } from "../../../features/movies/ulrSearchParams";
-import { toMovieDetails, toPeople, toPersonDetails, toPopularMovies } from "../../../routes";
+import { queryParamName, useQueryParams } from "../../../core/ulrSearchParams";
+import { toMovieDetails, toPeople, toPersonDetails, toPopularMovies } from "../../../core/routes";
 import { SearchIcon, SearchInput, SearchWrapper } from "./styled";
 
 const Search = () => {

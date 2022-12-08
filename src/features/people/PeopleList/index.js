@@ -1,13 +1,13 @@
 import { MainWrapper, Header, TilesContainer, TilePerson, ImageWrapper, Image, Title, StyledLink } from "./styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingFalse } from "../peopleSlice";
+import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingState } from "../peopleSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import Navigation from "../../../common/Navigation";
 import NoResults from "../../../common/NoResults";
 import Pagination from "../../../common/Pagination";
-import { usePageParams } from "../../movies/ulrSearchParams";
+import { usePageParams } from "../../../core/ulrSearchParams";
 
 const PeopleList = ({ insideDetails, title, credits }) => {
   const fetchedPeople = useSelector(selectPeople);
@@ -24,7 +24,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     if (!credits) {
       dispatch(fetchPeople());
     } else {
-      dispatch(setLoadingFalse());
+      dispatch(setLoadingState(false));
     }
   }, [dispatch, credits]);
 
@@ -37,7 +37,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
             fetchedPeople.total_results === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
               <>
                 <Header>
-                  {title ? `${title} (${people.length})` : 
+                  {title ? `${title} (${people.length})` :
                     query ? `Search results for "${query}" (${fetchedPeople.total_results})` : `Popular movies`}
                 </Header>
                 <TilesContainer>
@@ -45,23 +45,23 @@ const PeopleList = ({ insideDetails, title, credits }) => {
                     <StyledLink key={people.indexOf(person)} to={`/people/person/${person.id}`}>
                       <TilePerson>
                         <ImageWrapper>
-                          {person.profile_path ? 
-                            <Image src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} alt="Actor image" /> : 
+                          {person.profile_path ?
+                            <Image src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} alt="Actor image" /> :
                             <Image />
                           }
                         </ImageWrapper>
                         <Title>{person.name}</Title>
-                        {person.character ? 
-                          <Title job>{person.character}</Title> : 
-                            person.job ? 
-                              <Title job>{person.job}</Title> : 
-                              ""
+                        {person.character ?
+                          <Title job>{person.character}</Title> :
+                          person.job ?
+                            <Title job>{person.job}</Title> :
+                            ""
                         }
                       </TilePerson>
                     </StyledLink>
                   ))}
                 </TilesContainer>
-                {credits ? "" : 
+                {credits ? "" :
                   <Pagination
                     setPageParamsToUrl={setPageParamsToUrl}
                     page={page}

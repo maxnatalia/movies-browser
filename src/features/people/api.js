@@ -1,4 +1,4 @@
-import { apiKey, apiUrl, apiPersonDetails } from "../../apiData";
+import { apiKey, apiUrl, apiPersonDetails } from "../../core/apiData";
 
 const getPopularPeople = async (page) => {
   const response = await fetch(`${apiUrl}person/popular?api_key=${apiKey}&language=en-US&page=${page}`);
