@@ -1,6 +1,6 @@
 {
   "name": "movies-browser",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://maxnatalia.github.io/movies-browser/",
   "dependencies": {
