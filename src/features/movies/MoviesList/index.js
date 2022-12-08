@@ -8,7 +8,7 @@ import {
   selectMovies,
   selectGenres,
   selectQuery,
-  setLoadingFalse,
+  setLoadingState,
   selectPage,
 } from "../moviesSlice";
 import {
@@ -34,7 +34,7 @@ import Loading from "../../../common/Loading";
 import Pagination from "../../../common/Pagination";
 import NoResults from "../../../common/NoResults";
 import Navigation from "../../../common/Navigation";
-import { usePageParams } from "../ulrSearchParams";
+import { usePageParams } from "../../../core/ulrSearchParams";
 
 const MoviesList = ({ insideDetails, title, credits }) => {
   const fetchedMovies = useSelector(selectMovies);
@@ -52,8 +52,8 @@ const MoviesList = ({ insideDetails, title, credits }) => {
     if (!credits) {
       dispatch(fetchMovies());
     } else {
-      dispatch(setLoadingFalse());
-    }
+      dispatch(setLoadingState(false));
+    };
 
     if (genres.length === 0) {
       dispatch(fetchGenres());

@@ -1,5 +1,5 @@
 import React from "react";
-import { toPeople, toPopularMovies } from "../../routes";
+import { toPeople, toPopularMovies } from "../../core/routes";
 import Search from "./Search";
 import {
     Nav,

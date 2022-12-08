@@ -1,4 +1,4 @@
-import { apiKey, apiMovieDetails, apiUrl } from "../../apiData";
+import { apiKey, apiMovieDetails, apiUrl } from "../../core/apiData";
 
 const getPopularMovies = async (page) => {
   const response = await fetch(`${apiUrl}movie/popular?api_key=${apiKey}&language=en-US&page=${page}`);

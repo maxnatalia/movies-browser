@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { apiBackdrop } from "../../../../apiData";
+import { apiBackdrop } from "../../../../core/apiData";
 
 export const PosterDisplay = styled.div`
   background-color: ${({ theme }) => theme.color.black};
