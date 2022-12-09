@@ -49,12 +49,6 @@ const MovieDetails = () => {
     dispatch(fetchMovieDetails());
   }, [id, dispatch]);
   
-  if (loadingMovieDetails || loadingMovieCredits) {
-    return <Loading />;
-  } else if (error) {
-    return <Error />;
-  }
-
   return (
     <> 
       <Navigation />
