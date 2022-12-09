@@ -1,4 +1,4 @@
-# Movies Browser🎞🎬🎥📽
+# Movies Browser🎬
 
 Movies Browser is an application based on the graphic design in Figma and created as the finall project of the Frontend Developer course at YouCode. 
 
@@ -59,7 +59,6 @@ This project uses an API provided by [**The Movie Database**](https://www.themo
 - [x] React Hooks
 - [x] Working with API
 - [x] NPM
-- [x] JSX
 - [x] Trello
 - [x] Figma
 - [x] Team Work
