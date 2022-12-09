@@ -9,7 +9,7 @@ import {
     setQuery, 
     selectPage, 
     setPage, 
-    setLoadingState
+    setLoadingFalse
 } from "./moviesSlice";
 import { getGenres, getMovies } from "./api";
 
@@ -42,7 +42,6 @@ function* fetchGenresHandler() {
 }
 
 function* setOnChangeHandler() {
-    yield put(setLoadingState(true));
     yield delay(500);
     yield put(fetchMovies());
 };

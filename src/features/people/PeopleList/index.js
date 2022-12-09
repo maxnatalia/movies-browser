@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingState } from "../peopleSlice";
+import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingFalse } from "../peopleSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import Navigation from "../../../common/Navigation";
@@ -24,7 +24,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     if (!credits) {
       dispatch(fetchPeople());
     } else {
-      dispatch(setLoadingState(false));
+      dispatch(setLoadingFalse());
     }
   }, [dispatch, credits]);
 

@@ -23,8 +23,8 @@ const peopleSlice = createSlice({
             state.loading = false;
             state.error = true;
         },
-        setLoadingState: (state, {payload: boolean}) => {
-            state.loading = boolean;
+        setLoadingFalse: (state) => {
+            state.loading = false;
         },
         setPeoplePage: (state, { payload: pagination }) => {
             state.page = pagination;
@@ -40,7 +40,6 @@ export const {
     fetchPeopleSuccess,
     fetchPeopleError,
     setLoadingFalse,
-    setLoadingState,
     setPeoplePage,
     setPeopleQuery,
 } = peopleSlice.actions;

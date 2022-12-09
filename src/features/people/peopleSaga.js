@@ -5,7 +5,7 @@ import {
     fetchPeople,
     selectQuery,
     selectPage,
-    setLoadingState,
+    setLoadingFalse,
     setPeopleQuery,
     setPeoplePage
 } from "./peopleSlice";
@@ -30,7 +30,6 @@ function* fetchPeopleHandler() {
 };
 
 function* setOnChangeHandler() {
-    yield put(setLoadingState());
     yield delay(500);
     yield put(fetchPeople());
 };
