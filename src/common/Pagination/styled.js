@@ -22,10 +22,20 @@ export const PaginationButton = styled.button`
     line-height: 1.4;
     background-color: ${({ theme }) => theme.color.lightBlue};
     max-height: 36px;
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(105%);
+    }
 
     &:disabled {
         background-color: ${({ theme }) => theme.color.grey};
         color: ${({ theme }) => theme.color.black};
+        cursor: default;
+
+        &:hover {
+            filter: none;
+        }
     }
 
     @media(max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
