@@ -50,20 +50,19 @@ const MoviesList = ({ insideDetails, title, credits, secondcall }) => {
 
   useEffect(() => {
     if (!credits) {
-      console.log("test");
       dispatch(fetchMovies());
     } else {
-      if (secondcall) {
+      if (secondcall && loading) {
         dispatch(setLoadingFalse());
       }
     };
   }, [dispatch, credits, secondcall]);
 
   useEffect(() => {
-    if (genres.length === 0) {
+    if (genres.length === 0 && secondcall) {
       dispatch(fetchGenres());
     }
-  }, [dispatch, genres]);
+  }, [dispatch, genres, secondcall]);
 
   return (
     <>

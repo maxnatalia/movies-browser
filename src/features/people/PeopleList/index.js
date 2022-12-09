@@ -24,7 +24,7 @@ const PeopleList = ({ insideDetails, title, credits, secondcall }) => {
     if (!credits) {
       dispatch(fetchPeople());
     } else {
-      if (secondcall) {
+      if (secondcall && loading) {
         dispatch(setLoadingFalse());
       }
     }
