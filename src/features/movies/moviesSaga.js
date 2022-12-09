@@ -9,7 +9,6 @@ import {
     setQuery, 
     selectPage, 
     setPage, 
-    setLoadingFalse
 } from "./moviesSlice";
 import { getGenres, getMovies } from "./api";
 

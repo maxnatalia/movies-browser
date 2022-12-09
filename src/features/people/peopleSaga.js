@@ -5,9 +5,8 @@ import {
     fetchPeople,
     selectQuery,
     selectPage,
-    setLoadingFalse,
     setPeopleQuery,
-    setPeoplePage
+    setPeoplePage,
 } from "./peopleSlice";
 import { getPeople } from "./api";
 

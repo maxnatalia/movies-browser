@@ -53,14 +53,12 @@ const MoviesList = ({ insideDetails, title, credits }) => {
       console.log("test");
       dispatch(fetchMovies());
     } else {
-      console.log("test 2");
       dispatch(setLoadingFalse());
     };
   }, [dispatch, credits]);
 
   useEffect(() => {
     if (genres.length === 0) {
-      console.log("test 3");
       dispatch(fetchGenres());
     }
   }, [dispatch, genres]);
