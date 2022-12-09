@@ -113,6 +113,7 @@ const MovieDetails = () => {
                 insideDetails 
                 title="Crew"
                 credits={credits.crew}
+                secondcall
               />
             </MainWrapper>
           </>

@@ -36,7 +36,7 @@ import NoResults from "../../../common/NoResults";
 import Navigation from "../../../common/Navigation";
 import { usePageParams } from "../../../core/ulrSearchParams";
 
-const MoviesList = ({ insideDetails, title, credits }) => {
+const MoviesList = ({ insideDetails, title, credits, secondcall }) => {
   const fetchedMovies = useSelector(selectMovies);
   const genres = useSelector(selectGenres);
   const loading = useSelector(selectLoading);
@@ -53,9 +53,11 @@ const MoviesList = ({ insideDetails, title, credits }) => {
       console.log("test");
       dispatch(fetchMovies());
     } else {
-      dispatch(setLoadingFalse());
+      if (secondcall) {
+        dispatch(setLoadingFalse());
+      }
     };
-  }, [dispatch, credits]);
+  }, [dispatch, credits, secondcall]);
 
   useEffect(() => {
     if (genres.length === 0) {

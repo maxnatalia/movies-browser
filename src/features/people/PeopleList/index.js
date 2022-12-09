@@ -9,7 +9,7 @@ import Pagination from "../../../common/Pagination";
 import { usePageParams } from "../../../core/ulrSearchParams";
 import { MainWrapper, Header, TilesContainer, TilePerson, ImageWrapper, Image, Title, StyledLink } from "./styled";
 
-const PeopleList = ({ insideDetails, title, credits }) => {
+const PeopleList = ({ insideDetails, title, credits, secondcall }) => {
   const fetchedPeople = useSelector(selectPeople);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -24,9 +24,11 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     if (!credits) {
       dispatch(fetchPeople());
     } else {
-      dispatch(setLoadingFalse());
+      if (secondcall) {
+        dispatch(setLoadingFalse());
+      }
     }
-  }, [dispatch, credits]);
+  }, [dispatch, credits, secondcall]);
 
   return (
     <>
