@@ -38,7 +38,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
               <>
                 <Header>
                   {title ? `${title} (${people.length})` :
-                    query ? `Search results for "${query}" (${fetchedPeople.total_results})` : `Popular movies`}
+                    query ? `Search results for "${query}" (${fetchedPeople.total_results})` : `Popular people`}
                 </Header>
                 <TilesContainer>
                   {people?.map((person) => (
