@@ -23,6 +23,7 @@ export const PaginationButton = styled.button`
     background-color: ${({ theme }) => theme.color.lightBlue};
     max-height: 36px;
     cursor: pointer;
+    transition: 0.25s;
 
     &:hover {
         filter: brightness(105%);
