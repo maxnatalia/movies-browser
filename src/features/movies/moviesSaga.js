@@ -40,14 +40,7 @@ function* fetchGenresHandler() {
     }
 }
 
-function* setOnChangeHandler() {
-    yield delay(500);
-    yield put(fetchMovies());
-};
-
 export function* watchFetchPopularMovies() {
     yield takeLatest(fetchGenres, fetchGenresHandler);
-    yield takeLatest(fetchMovies.type, fetchMoviesHandler);
-    yield takeLatest(setQuery.type, setOnChangeHandler);
-    yield takeLatest(setPage.type, setOnChangeHandler);
+    yield takeLatest([fetchMovies.type, setQuery.type, setPage.type], fetchMoviesHandler);
 }
