@@ -5,11 +5,23 @@ const peopleSlice = createSlice({
     initialState: {
         loading: true,
         error: false,
-        people: [],
+        query: null,
         page: 1,
-        query: "",
+        people: [],
+        personId: "",
+        personDetails: [],
+        personCredits: [],
     },
     reducers: {
+        setLoadingState: (state, { payload: boolean }) => {
+            state.loading = boolean;
+        },
+        setPeoplePage: (state, { payload: pagination }) => {
+            state.page = pagination;
+        },
+        setPeopleQuery: (state, { payload: query }) => {
+            state.query = query;
+        },
         fetchPeople: (state) => {
             state.loading = true;
             state.error = false;
@@ -23,26 +35,42 @@ const peopleSlice = createSlice({
             state.loading = false;
             state.error = true;
         },
-        setLoadingState: (state, {payload: boolean}) => {
-            state.loading = boolean;
+        changePersonId: (state, { payload: id }) => {
+            state.personId = id;
         },
-        setPeoplePage: (state, { payload: pagination }) => {
-            state.page = pagination;
+        fetchPersonDetails: (state) => {
+            state.loading = true;
+            state.error = false;
+            state.personDetails = [];
         },
-        setPeopleQuery: (state, { payload: query }) => {
-            state.query = query;
+        fetchPersonDetailsSuccess: (state, { payload: person }) => {
+            state.loading = false;
+            state.personDetails = person;
+        },
+        fetchPersonCredits: (state) => {
+            state.loading = true;
+            state.personCredits = [];
+        },
+        fetchPersonCreditsSuccess: (state, { payload: credits }) => {
+            state.loading = false;
+            state.personCredits = credits;
         }
     },
 });
 
 export const {
+    setLoadingFalse,
+    setLoadingState,
+    setPeopleQuery,
+    setPeoplePage,
     fetchPeople,
     fetchPeopleSuccess,
     fetchPeopleError,
-    setLoadingFalse,
-    setLoadingState,
-    setPeoplePage,
-    setPeopleQuery,
+    changePersonId,
+    fetchPersonDetails,
+    fetchPersonDetailsSuccess,
+    fetchPersonCredits,
+    fetchPersonCreditsSuccess,
 } = peopleSlice.actions;
 
 export const selectPeopleState = (state) => state.people;
@@ -51,5 +79,8 @@ export const selectLoading = state => selectPeopleState(state).loading;
 export const selectError = state => selectPeopleState(state).error;
 export const selectPage = state => selectPeopleState(state).page;
 export const selectQuery = state => selectPeopleState(state).query;
+export const selectId = (state) => selectPeopleState(state).personId;
+export const selectPersonDetails = (state) => selectPeopleState(state).personDetails;
+export const selectPersonCredits = (state) => selectPeopleState(state).personCredits;
 
 export default peopleSlice.reducer;
