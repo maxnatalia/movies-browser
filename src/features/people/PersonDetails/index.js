@@ -17,20 +17,18 @@ import MoviesList from "../../movies/MoviesList";
 import {
   changePersonId,
   fetchPersonDetails,
-  selectError,
-  selectLoadingDetails,
-  selectLoadingCredits,
   selectPersonDetails,
   selectPersonCredits,
-} from "./personDetailsSlice";
+  selectLoading,
+  selectError,
+} from "../peopleSlice";
 import { changeDateFormat } from "../../../core/functions";
 import Navigation from "../../../common/Navigation";
 
 const PersonDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const loadingPersonDetails = useSelector(selectLoadingDetails);
-  const loadingPersonCredits = useSelector(selectLoadingCredits);
+  const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const person = useSelector(selectPersonDetails);
   const credits = useSelector(selectPersonCredits);
@@ -45,7 +43,7 @@ const PersonDetails = () => {
     <>
       <Navigation />
       {error ? <Error /> :
-        (loadingPersonDetails || loadingPersonCredits) ? <Loading /> :
+        (loading) ? <Loading /> :
           <>
             <MainWrapper>
               <DetailsWrapper>

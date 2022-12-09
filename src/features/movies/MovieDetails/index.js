@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import MainWrapper from "../../../common/MainWrapper";
+import { changeDateFormat } from "../../../core/functions";
 import {
   DetailsImage,
   DetailsText,
@@ -18,27 +18,25 @@ import {
   TagsWrapper,
   AdditionalInfoWrapper,
 } from "../../../common/Details";
-import Backdrop from "./Backdrop";
-import Loading from "../../../common/Loading";
-import Error from "../../../common/Error";
-import PeopleList from "../../people/PeopleList";
 import { 
   changeMovieId, 
   fetchMovieDetails, 
   selectError, 
-  selectLoadingDetails,
-  selectLoadingCredits,
-  selectMovieDetails, 
-  selectMovieCredits,
-} from "./movieDetailsSlice";
-import { changeDateFormat } from "../../../core/functions";
+  selectLoading, 
+  selectMovieCredits, 
+  selectMovieDetails 
+} from "../moviesSlice";
+import MainWrapper from "../../../common/MainWrapper";
+import Backdrop from "./Backdrop";
+import Loading from "../../../common/Loading";
+import Error from "../../../common/Error";
+import PeopleList from "../../people/PeopleList";
 import Navigation from "../../../common/Navigation";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const loadingMovieDetails = useSelector(selectLoadingDetails);
-  const loadingMovieCredits = useSelector(selectLoadingCredits);
+  const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const movie = useSelector(selectMovieDetails);
   const credits = useSelector(selectMovieCredits);
@@ -48,18 +46,12 @@ const MovieDetails = () => {
     dispatch(changeMovieId(id));
     dispatch(fetchMovieDetails());
   }, [id, dispatch]);
-  
-  if (loadingMovieDetails || loadingMovieCredits) {
-    return <Loading />;
-  } else if (error) {
-    return <Error />;
-  }
 
   return (
     <> 
       <Navigation />
       {error ? <Error /> :
-        (loadingMovieDetails || loadingMovieCredits) ? <Loading /> :
+        (loading)  ? <Loading /> :
           <>
             {movie.backdrop_path ? <Backdrop movie={movie}/> : ""}
             <MainWrapper>
@@ -101,7 +93,7 @@ const MovieDetails = () => {
                   }
                   <RatingWrapper mobile>
                     <StarIcon />
-                    <Rate>{movie.vote_average.toFixed(1)}</Rate>
+                    <Rate>{movie.vote_average?.toFixed(1)}</Rate>
                     <Votes mobileHidden>/ 10</Votes>
                     <Votes mobile>{movie.vote_count} votes</Votes>
                   </RatingWrapper>
