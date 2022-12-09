@@ -59,12 +59,6 @@ const MoviesList = ({ insideDetails, title, credits, secondcall }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, credits, secondcall]);
 
-  useEffect(() => {
-    if (genres.length === 0 && secondcall) {
-      dispatch(fetchGenres());
-    }
-  }, [dispatch, genres, secondcall]);
-
   return (
     <>
       {credits ? "" : <Navigation />}

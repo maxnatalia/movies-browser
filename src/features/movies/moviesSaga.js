@@ -8,23 +8,26 @@ import {
     selectQuery, 
     setQuery, 
     selectPage, 
-    setPage, 
+    setPage,
+    selectGenres,
 } from "./moviesSlice";
 import { getGenres, getMovies } from "./api";
 
 function* fetchMoviesHandler() {
     const query = yield select(selectQuery);
     const page = yield select(selectPage);
+    const genres = yield select(selectGenres);
 
     try {
         yield delay(500);
+
+        if (genres.length === 0) {
+            yield put(fetchGenres());
+        }
+
         const data = yield call(getMovies, query, page);
         const movies = data;
-        yield put(
-            fetchMoviesSuccess({
-                movies,
-            })
-        );
+        yield put(fetchMoviesSuccess({ movies }));
     } catch (error) {
         yield put(fetchError());
     }
@@ -41,6 +44,6 @@ function* fetchGenresHandler() {
 }
 
 export function* watchFetchPopularMovies() {
-    yield takeLatest(fetchGenres, fetchGenresHandler);
+    yield takeLatest(fetchGenres.type, fetchGenresHandler);
     yield takeLatest([fetchMovies.type, setQuery.type, setPage.type], fetchMoviesHandler);
 }
