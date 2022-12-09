@@ -48,9 +48,9 @@ export const TilePerson = styled.div`
     padding: 16px;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
     cursor: pointer;
+    transition: 0.7s linear;
 
     &:hover {
-        transition: 1s linear;
         transform: scale(1.05);
         box-shadow: 0 4px 12px rgba(186, 199, 213, 1.5);
     }
