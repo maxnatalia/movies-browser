@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import person from "../../../common/images/Person.svg";
 
-export const MainWrapper = styled.main`
+export const MainWrapper = styled.div`
     margin: 0 auto;
     max-width: 1400px;
     padding: 16px;
@@ -10,6 +10,10 @@ export const MainWrapper = styled.main`
     ${({ insideDetails }) => insideDetails && css`
         padding: 0;
     `}
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+        margin-bottom: 24px;
+    }
 `;
 
 export const Header = styled.h2`

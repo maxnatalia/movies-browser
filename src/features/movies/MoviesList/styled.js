@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { ReactComponent as Star } from "../../../common/images/Star.svg";
 import video from "../../../common/images/Video.svg";
 
-export const MainWrapper = styled.main`
+export const MainWrapper = styled.div`
     margin: 0 auto;
     max-width: 1400px;
     padding: 0 16px;
