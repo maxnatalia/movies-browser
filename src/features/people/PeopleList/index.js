@@ -28,7 +28,8 @@ const PeopleList = ({ insideDetails, title, credits, secondcall }) => {
         dispatch(setLoadingFalse());
       }
     }
-  }, [dispatch, credits, secondcall, loading]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, credits, secondcall]);
 
   return (
     <>
