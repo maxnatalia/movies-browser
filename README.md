@@ -15,12 +15,12 @@ Movies Browser is an application based on the graphic design in Figma and create
 [Movies Browser - Demo](https://maxnatalia.github.io/movies-browser/)
 
 ## Preview 
-![Preview.gif](./src/images/Preview.gif)
+![Preview.gif](./Preview.gif)
 ## General informations
 
 You can easily browse and search for popular movies and poeple. Additionally, each movie and person has a separate page with information about the crew and cast, etc.
 
-![responsive.jpg](./src/images/responsive.JPG)
+![responsive.jpg](./responsive.JPG)
 
 The Movies Browser application is fully responsive for all popular devices.
 ## How to use?
@@ -42,7 +42,7 @@ The Movies Browser application is fully responsive for all popular devices.
 - [Patryk Krawczyk](https://github.com/patrick36212)
 
 ## External sources
-[![tmdb.jpg](./src/images/tmdb.JPG)](https://www.themoviedb.org/)
+[![tmdb.jpg](./tmdb.JPG)](https://www.themoviedb.org/)
 
 This project uses an API provided by [**The Movie Database**](https://www.themoviedb.org/). To use the API, you must create an account and generate a personal *apikey*. 
 ## Used technologies and concepts
