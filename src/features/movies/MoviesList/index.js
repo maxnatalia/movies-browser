@@ -56,7 +56,7 @@ const MoviesList = ({ insideDetails, title, credits, secondcall }) => {
         dispatch(setLoadingFalse());
       }
     };
-  }, [dispatch, credits, secondcall]);
+  }, [dispatch, credits, secondcall, loading]);
 
   useEffect(() => {
     if (genres.length === 0 && secondcall) {

@@ -28,7 +28,7 @@ const PeopleList = ({ insideDetails, title, credits, secondcall }) => {
         dispatch(setLoadingFalse());
       }
     }
-  }, [dispatch, credits, secondcall]);
+  }, [dispatch, credits, secondcall, loading]);
 
   return (
     <>
