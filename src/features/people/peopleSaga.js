@@ -28,13 +28,7 @@ function* fetchPeopleHandler() {
     }
 };
 
-function* setOnChangeHandler() {
-    yield delay(500);
-    yield put(fetchPeople());
-};
 
 export function* watchFetchPopularPeople() {
-    yield takeLatest(setPeopleQuery.type, setOnChangeHandler)
-    yield takeLatest(setPeoplePage.type, setOnChangeHandler);
-    yield takeLatest(fetchPeople.type, fetchPeopleHandler);
+    yield takeLatest([fetchPeople.type, setPeoplePage.type, setPeopleQuery.type], fetchPeopleHandler);
 }
