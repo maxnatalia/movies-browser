@@ -37,7 +37,7 @@ const PeopleList = ({ insideDetails, title, credits, secondcall }) => {
       <MainWrapper insideDetails={insideDetails}>
         {error ? <Error /> :
           loading ? <Loading loadingMessage={query ? `Search results for "${query}"` : ""} /> :
-            fetchedPeople.total_results === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
+            fetchedPeople.total_results === 0 && !credits ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
               <>
                 <Header>
                   {title ? `${title} (${people.length})` :
