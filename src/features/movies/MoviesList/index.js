@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchMovies,
-  fetchGenres,
   selectError,
   selectLoading,
   selectMovies,
   selectGenres,
   selectQuery,
-  setLoadingState,
+  setLoadingFalse,
   selectPage,
 } from "../moviesSlice";
 import {
@@ -36,7 +35,7 @@ import NoResults from "../../../common/NoResults";
 import Navigation from "../../../common/Navigation";
 import { usePageParams } from "../../../core/ulrSearchParams";
 
-const MoviesList = ({ insideDetails, title, credits }) => {
+const MoviesList = ({ insideDetails, title, credits, secondcall }) => {
   const fetchedMovies = useSelector(selectMovies);
   const genres = useSelector(selectGenres);
   const loading = useSelector(selectLoading);
@@ -52,13 +51,12 @@ const MoviesList = ({ insideDetails, title, credits }) => {
     if (!credits) {
       dispatch(fetchMovies());
     } else {
-      dispatch(setLoadingState(false));
+      if (secondcall && loading) {
+        dispatch(setLoadingFalse());
+      }
     };
-
-    if (genres.length === 0) {
-      dispatch(fetchGenres());
-    }
-  }, [dispatch, credits, genres]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, credits, secondcall]);
 
   return (
     <>
@@ -66,7 +64,7 @@ const MoviesList = ({ insideDetails, title, credits }) => {
       <MainWrapper insideDetails={insideDetails}>
         {error ? <Error /> :
           loading ? <Loading loadingMessage={query ? `Search results for "${query}"` : ""} /> : 
-            fetchedMovies.total_results === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
+            fetchedMovies.total_results === 0 && !credits ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
               <>
                 <Header>
                   {title ? `${title} (${movies.length})` : 

@@ -49,12 +49,6 @@ const MovieDetails = () => {
     dispatch(fetchMovieDetails());
   }, [id, dispatch]);
   
-  if (loadingMovieDetails || loadingMovieCredits) {
-    return <Loading />;
-  } else if (error) {
-    return <Error />;
-  }
-
   return (
     <> 
       <Navigation />
@@ -119,6 +113,7 @@ const MovieDetails = () => {
                 insideDetails 
                 title="Crew"
                 credits={credits.crew}
+                secondcall
               />
             </MainWrapper>
           </>

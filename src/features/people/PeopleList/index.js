@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingState } from "../peopleSlice";
+import { fetchPeople, selectError, selectLoading, selectPage, selectPeople, selectQuery, setLoadingFalse } from "../peopleSlice";
 import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import Navigation from "../../../common/Navigation";
@@ -9,7 +9,7 @@ import Pagination from "../../../common/Pagination";
 import { usePageParams } from "../../../core/ulrSearchParams";
 import { MainWrapper, Header, TilesContainer, TilePerson, ImageWrapper, Image, Title, StyledLink } from "./styled";
 
-const PeopleList = ({ insideDetails, title, credits }) => {
+const PeopleList = ({ insideDetails, title, credits, secondcall }) => {
   const fetchedPeople = useSelector(selectPeople);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -24,9 +24,12 @@ const PeopleList = ({ insideDetails, title, credits }) => {
     if (!credits) {
       dispatch(fetchPeople());
     } else {
-      dispatch(setLoadingState(false));
+      if (secondcall && loading) {
+        dispatch(setLoadingFalse());
+      }
     }
-  }, [dispatch, credits]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, credits, secondcall]);
 
   return (
     <>
@@ -34,7 +37,7 @@ const PeopleList = ({ insideDetails, title, credits }) => {
       <MainWrapper insideDetails={insideDetails}>
         {error ? <Error /> :
           loading ? <Loading loadingMessage={query ? `Search results for "${query}"` : ""} /> :
-            fetchedPeople.total_results === 0 ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
+            fetchedPeople.total_results === 0 && !credits ? <NoResults noResultMessage={`Sorry, there are no results for “${query}”`} /> :
               <>
                 <Header>
                   {title ? `${title} (${people.length})` :

@@ -11,14 +11,16 @@ const moviesSlice = createSlice({
         page: 1,
     },
     reducers: {
-        setLoadingState: (state, {payload: boolean}) => {
-            state.loading = boolean;
+        setLoadingFalse: (state,) => {
+            state.loading = false;
         },
         setQuery: (state, { payload: query }) => {
             state.query = query;
+            state.loading = true;
         },
         setPage: (state, { payload: pagination }) => {
             state.page = pagination;
+            state.loading = true;
         },
         fetchError: (state) => {
             state.loading = false;
@@ -41,7 +43,7 @@ const moviesSlice = createSlice({
 });
 
 export const {
-    setLoadingState,
+    setLoadingFalse,
     setQuery,
     setPage,
     fetchError,

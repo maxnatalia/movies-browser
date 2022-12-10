@@ -20,7 +20,7 @@ export const Header = styled.h2`
     line-height: 1.2;
     font-size: 36px;
     font-weight: 600;
-    margin-top: 40px;
+    margin-top: 56px;
     color: ${({ theme }) => theme.color.lightBlack};
 
 
