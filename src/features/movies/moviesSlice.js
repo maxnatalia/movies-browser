@@ -16,9 +16,11 @@ const moviesSlice = createSlice({
         },
         setQuery: (state, { payload: query }) => {
             state.query = query;
+            state.loading = true;
         },
         setPage: (state, { payload: pagination }) => {
             state.page = pagination;
+            state.loading = true;
         },
         fetchError: (state) => {
             state.loading = false;

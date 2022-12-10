@@ -28,9 +28,11 @@ const peopleSlice = createSlice({
         },
         setPeoplePage: (state, { payload: pagination }) => {
             state.page = pagination;
+            state.loading = true;
         },
         setPeopleQuery: (state, { payload: query }) => {
             state.query = query;
+            state.loading = true;
         }
     },
 });
